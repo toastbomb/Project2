@@ -9,5 +9,6 @@ function Start ()
 
 function Update () 
 {
+	player = GameObject.FindWithTag("Player");
 	transform.position.x = player.transform.position.x;
 }
