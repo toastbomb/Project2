@@ -4,6 +4,9 @@ var speed : float = 6.0;
 var jumpSpeed : float = 8.0;
 var gravity : float = 20.0;
 
+enum PlayerState{Talking, Walking, Fighting};
+var playerState : PlayerState = playerState.Walking;
+
 private var moveDirection : Vector3 = Vector3.zero;
 
 function Update () 
@@ -16,12 +19,12 @@ function Update ()
 		moveDirection.Normalize();
 		moveDirection *= speed;
 		
-		if(Input.GetButtonDown("Jump"))
+		if(Input.GetButton("Jump"))
 		{
 			moveDirection.y = jumpSpeed;
 		}
 	}
-	
+
 	moveDirection.y -= gravity * Time.deltaTime;
 	controller.Move(moveDirection * Time.deltaTime);
 }
