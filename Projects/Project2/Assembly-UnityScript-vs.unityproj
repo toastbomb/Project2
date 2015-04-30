@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\CameraFollow.js" />
      <Compile Include="Assets\_Scripts\PlayerCombatController.js" />
-     <Compile Include="Assets\_Scripts\PlayerController.js" />
      <Compile Include="Assets\_Scripts\PlayerManager.js" />
      <Compile Include="Assets\_Scripts\PlayerMoveController.js" />
      <Compile Include="Assets\_Scripts\PlayerTalkingController.js" />

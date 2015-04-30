@@ -4,6 +4,7 @@ var speed : float = 6.0;
 var jumpSpeed : float = 8.0;
 var gravity : float = 20.0;
 var friction : float = 1.0;
+var airControl : float = 10.0;
 
 private var moveDirection : Vector3 = Vector3.zero;
 private var inputDirection : Vector2 = Vector2.zero;
@@ -42,6 +43,8 @@ public function MoveUpdate ()
 			}
 			hitHead = true;
 		}
+		moveDirection.x = inputDirection.x * Time.deltaTime * airControl;
+		moveDirection.z = inputDirection.y * Time.deltaTime * airControl;
 	}
 
 	moveDirection.y -= gravity * Time.deltaTime;
