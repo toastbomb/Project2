@@ -46,13 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\_Scripts\BattleTrigger.cs" />
+     <Compile Include="Assets\_Scripts\BattleControl.cs" />
      <Compile Include="Assets\_Scripts\CameraFollow.cs" />
-     <Compile Include="Assets\_Scripts\EnemyControllerMove.cs" />
-     <Compile Include="Assets\_Scripts\EnemyManager.cs" />
-     <Compile Include="Assets\_Scripts\PlayerControllerBattle.cs" />
+     <Compile Include="Assets\_Scripts\Enemy.cs" />
+     <Compile Include="Assets\_Scripts\GameControl.cs" />
      <Compile Include="Assets\_Scripts\PlayerControllerMove.cs" />
-     <Compile Include="Assets\_Scripts\PlayerControllerTalk.cs" />
      <Compile Include="Assets\_Scripts\PlayerManager.cs" />
      <Compile Include="Assets\_Scripts\SceneTrigger.cs" />
  <Reference Include="UnityEngine.UI">

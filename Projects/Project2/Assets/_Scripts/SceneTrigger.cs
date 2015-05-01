@@ -11,6 +11,7 @@ public class SceneTrigger : MonoBehaviour
 		{
 			if(sceneName != null)
 			{
+				GameControl.control.sceneActors.Clear();
 				Application.LoadLevel(sceneName);
 			}
 		}
