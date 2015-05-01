@@ -21,7 +21,7 @@ public class PlayerControllerMove : MonoBehaviour
 		characterController = gameObject.GetComponent<CharacterController> ();
 	}
 
-	void Update () 
+	public void UpdateMoveController () 
 	{
 		CheckMovement ();
 		CheckInput ();
