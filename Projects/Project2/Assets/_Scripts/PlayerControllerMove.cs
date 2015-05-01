@@ -7,27 +7,27 @@ public class PlayerControllerMove : MonoBehaviour
 	public float terminalVelocity = 20f;
 	public float jumpSpeed = 6f;
 	public float moveSpeed = 10f;
-
+	
 	public Vector3 moveVec{ get; set; }
 	public float vertVel{ get; set; }
-
+	
 	public CharacterController characterController;
-
+	
 	public float deadZone = 0.1f;
 	private bool hitHead = false;
-
+	
 	void Awake()
 	{
 		characterController = gameObject.GetComponent<CharacterController> ();
 	}
-
+	
 	public void UpdateMoveController () 
 	{
 		CheckMovement ();
 		CheckInput ();
 		UpdateMovement ();
 	}
-
+	
 	void CheckMovement()
 	{
 		vertVel = moveVec.y;
@@ -39,7 +39,7 @@ public class PlayerControllerMove : MonoBehaviour
 			moveVec += new Vector3(inputVec.x, 0, inputVec.y);
 		}
 	}
-
+	
 	void CheckInput()
 	{
 		if(Input.GetButton("Jump"))
@@ -47,7 +47,7 @@ public class PlayerControllerMove : MonoBehaviour
 			Jump();
 		}
 	}
-
+	
 	void UpdateMovement()
 	{
 		moveVec = transform.TransformDirection (moveVec);
@@ -61,7 +61,7 @@ public class PlayerControllerMove : MonoBehaviour
 		CheckCollision ();
 		characterController.Move (moveVec * Time.deltaTime);
 	}
-
+	
 	void CheckCollision()
 	{
 		if(!characterController.isGrounded)
@@ -80,7 +80,7 @@ public class PlayerControllerMove : MonoBehaviour
 			hitHead = false;
 		}
 	}
-
+	
 	void ApplyGravity()
 	{
 		if(moveVec.y > -terminalVelocity)
@@ -92,7 +92,7 @@ public class PlayerControllerMove : MonoBehaviour
 			moveVec = new Vector3(moveVec.x, -1, moveVec.z);
 		}
 	}
-
+	
 	void Jump()
 	{
 		if(characterController.isGrounded)

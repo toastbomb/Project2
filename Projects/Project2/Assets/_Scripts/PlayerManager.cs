@@ -7,9 +7,10 @@ public class PlayerManager : MonoBehaviour
 	public enum PlayerState{Walking, Talking, Fighting, Dead};
 	public PlayerState playerState = PlayerState.Walking;
 
-	public float health;
-	public float xp;
-	public float mana;
+	public int health;
+	public int xp;
+	public int mana;
+	public int coins;
 
 	void Update () 
 	{
