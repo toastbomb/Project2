@@ -3,26 +3,41 @@ using System.Collections;
 
 public class BattleControl : MonoBehaviour 
 {
-	public GameObject[] aerialPositions = new GameObject[5];
-	public GameObject[] groundPositions = new GameObject[5];
-	public GameObject[] enemies = new GameObject[5];
-
-	void Start () 
+	public static BattleControl battleControl;
+	
+	public Vector3 prevPlayerPos;
+	public Vector3 playerBattlePos;
+	
+	void Awake () 
 	{
-		int i = 0;
-		foreach(GameObject obj in GameControl.control.enemyList)
+		if(battleControl == null)
 		{
-			if(obj.tag == "Enemy")
-			{
-				enemies[i] = GameObject.Instantiate(obj);
-				//enemies[i].transform.position = groundPositions[i].transform.position;
-				i++;
-			}
+			battleControl = this;
+		}
+		else if(battleControl != this)
+		{
+			Destroy(gameObject);
 		}
 	}
-
-	void Update () 
-	{
 	
+	void Start()
+	{
+		prevPlayerPos = PlayerManager.player.transform.position;
+		PlayerManager.player.transform.position = playerBattlePos;
+	}
+
+	void OnGUI() 
+	{
+		if (GUI.Button(new Rect(10, 10, 150, 100), "End fight"))
+		{
+			EndOfFight();
+		}
+	}
+	
+	public void EndOfFight()
+	{
+		PlayerManager.player.transform.position = prevPlayerPos;
+		PlayerManager.player.OnExitBattle();
+		Destroy(this.transform.parent.gameObject);
 	}
 }

@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_Scripts\BattleControl.cs" />
+     <Compile Include="Assets\_Scripts\BattleTrigger.cs" />
      <Compile Include="Assets\_Scripts\CameraFollow.cs" />
      <Compile Include="Assets\_Scripts\Enemy.cs" />
      <Compile Include="Assets\_Scripts\GameControl.cs" />
      <Compile Include="Assets\_Scripts\PlayerControllerMove.cs" />
      <Compile Include="Assets\_Scripts\PlayerManager.cs" />
      <Compile Include="Assets\_Scripts\SceneTrigger.cs" />
+     <Compile Include="Assets\_Scripts\TextTrigger.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
