@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_Scripts\BattleControl.cs" />
-     <Compile Include="Assets\_Scripts\BattleTrigger.cs" />
      <Compile Include="Assets\_Scripts\CameraFollow.cs" />
      <Compile Include="Assets\_Scripts\Enemy.cs" />
      <Compile Include="Assets\_Scripts\GameControl.cs" />
