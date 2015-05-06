@@ -10,6 +10,9 @@ public class PlayerManager : MonoBehaviour
 	public PlayerState playerState = PlayerState.Walking;
 	public string sceneName;
 
+	//temp
+	public Enemy enemy;
+
 	void Awake () 
 	{
 		if(player == null)
@@ -41,7 +44,8 @@ public class PlayerManager : MonoBehaviour
 				{
 					OnEnterBattle();
 					Application.LoadLevelAdditive(sceneName);
-					Destroy(other.gameObject);
+					enemy = (Enemy)other.GetComponent(typeof(Enemy));
+					//Destroy(other.gameObject);
 				}
 			}
 		}

@@ -46,6 +46,14 @@ public class PlayerControllerMove : MonoBehaviour
 		{
 			Jump();
 		}
+	
+		//Testing saving and loading
+		if (Input.GetButton ("Save")) {
+			GameControl.control.Save();
+		}
+		if (Input.GetButton ("Load")) {
+			GameControl.control.Load ();
+		}
 	}
 	
 	void UpdateMovement()
