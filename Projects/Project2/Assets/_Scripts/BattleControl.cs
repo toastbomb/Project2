@@ -32,12 +32,13 @@ public class BattleControl : MonoBehaviour
 	{
 		prevPlayerPos = PlayerManager.player.transform.position;
 		PlayerManager.player.transform.position = playerBattlePos;
+		//Build enemies
 		PlayerManager.player.enemy.BuildEnemyList ();
 		enemies = PlayerManager.player.enemy.enemyList;
 		Destroy (PlayerManager.player.enemy.gameObject);
 		enemy = (Enemy)enemies [0];
 		
-		enemyNum = enemies.Count;
+		enemyNum = enemies.Count; //Position enemies
 		for (int i=0; i < enemyNum; i++) {
 			Enemy e = (Enemy)enemies[i];
 			enemyXp += e.xp;
@@ -46,14 +47,11 @@ public class BattleControl : MonoBehaviour
 			Vector3 temp = new Vector3((e.transform.position.x + (i+1)*2), e.transform.position.y, e.transform.position.z);
 			e.transform.position = temp;
 		}
-		
-		//enemy.BuildEnemyList ();
-		//enemies = enemy.enemyList;
 	}
 	
 	void OnGUI() 
 	{
-		if (choosing == true) {
+		if (choosing == true) { //Ranged attack UI
 			enemyNum = enemies.Count;
 			ArrayList tempList = new ArrayList();
 			for(int i=0; i < enemyNum; i++){
@@ -74,17 +72,26 @@ public class BattleControl : MonoBehaviour
 			{
 				EndOfFight();
 			}
-			if (GUI.Button(new Rect(10, Screen.height - 110, 150, 100), "Melee"))
+			if (GUI.Button(new Rect(10, Screen.height - 110, 150, 100), "Melee: \n" + (int)(1.5*((double)GameControl.control.dmg))))
 			{
 				Melee();
 			}
-			if (GUI.Button(new Rect(170, Screen.height - 110, 150, 100), "Ranged"))
+			if (GUI.Button(new Rect(170, Screen.height - 110, 150, 100), "Ranged: \n" + (int)(.8*((double)GameControl.control.dmg))))
 			{
 				choosing = true;
 			}
 			Vector3 pos = Camera.main.WorldToScreenPoint (PlayerManager.player.transform.position);
 			GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health);
-			//enemy = (Enemy)enemies[0];
+			//Enemy hp
+			enemyNum = enemies.Count;
+			ArrayList tempList = new ArrayList();
+			for(int i=0; i < enemyNum; i++){
+				pos = Camera.main.WorldToScreenPoint (((Enemy)enemies[i]).transform.position);
+				tempList.Add(pos);
+			}
+			for (int i=0; i < enemyNum; i++) {
+				GUI.Box (new Rect (((Vector3)tempList[i]).x - 40, ((Vector3)tempList[i]).y - 40, 80, 20), "Health: " + ((Enemy)enemies[i]).health);
+			}
 		}
 	}
 	
@@ -99,7 +106,7 @@ public class BattleControl : MonoBehaviour
 	}
 	
 	void Ranged(){
-		int playerDmg = (int)(.8*((double)GameControl.control.dmg));//Later set to player damage value
+		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
 		enemy.health -= playerDmg;
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
@@ -119,7 +126,7 @@ public class BattleControl : MonoBehaviour
 	void Melee(){
 		
 		enemy = (Enemy)enemies[0];
-		int playerDmg = (int)(1.5*((double)GameControl.control.dmg));//Later set to player damage value
+		int playerDmg = (int)(1.5*((double)GameControl.control.dmg));
 		enemy.health -= playerDmg;
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
