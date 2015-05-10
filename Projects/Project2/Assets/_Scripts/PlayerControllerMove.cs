@@ -48,10 +48,10 @@ public class PlayerControllerMove : MonoBehaviour
 		}
 	
 		//Testing saving and loading
-		if (Input.GetButton ("Save")) {
+		if (Input.GetKeyDown(KeyCode.P)) {
 			GameControl.control.Save();
 		}
-		if (Input.GetButton ("Load")) {
+		if (Input.GetKeyDown(KeyCode.O)) {
 			GameControl.control.Load ();
 		}
 	}
