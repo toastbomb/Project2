@@ -14,7 +14,8 @@ public class BattleControl : MonoBehaviour
 	//temp
 	public Enemy enemy;
 	public int enemyNum;
-	
+
+	//Make sure we only ever have one BattleControl at a time
 	void Awake () 
 	{
 		if(battleControl == null)

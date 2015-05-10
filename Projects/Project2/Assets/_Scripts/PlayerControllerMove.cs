@@ -18,6 +18,7 @@ public class PlayerControllerMove : MonoBehaviour
 	
 	void Awake()
 	{
+		//get the character controler on this object
 		characterController = gameObject.GetComponent<CharacterController> ();
 	}
 	
@@ -32,8 +33,10 @@ public class PlayerControllerMove : MonoBehaviour
 	{
 		vertVel = moveVec.y;
 		moveVec = Vector3.zero;
+		//Get input from user
 		Vector2 inputVec = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-		
+
+		//Make sure that very small input don't result in movement
 		if(inputVec.magnitude > deadZone)
 		{
 			moveVec += new Vector3(inputVec.x, 0, inputVec.y);
@@ -58,7 +61,9 @@ public class PlayerControllerMove : MonoBehaviour
 	
 	void UpdateMovement()
 	{
+		//Makes sure the left is left and right is right etc. in reference to the camera
 		moveVec = transform.TransformDirection (moveVec);
+		//Forces magnitude to be a maximum of 1
 		if(moveVec.magnitude > 1f)
 		{
 			moveVec = Vector3.Normalize(moveVec);
@@ -67,6 +72,7 @@ public class PlayerControllerMove : MonoBehaviour
 		moveVec = new Vector3(moveVec.x, vertVel, moveVec.z);
 		ApplyGravity ();
 		CheckCollision ();
+		//Apply our move vector to the character
 		characterController.Move (moveVec * Time.deltaTime);
 	}
 	
@@ -74,10 +80,13 @@ public class PlayerControllerMove : MonoBehaviour
 	{
 		if(!characterController.isGrounded)
 		{
+			//If we touch something above us
 			if((characterController.collisionFlags & CollisionFlags.Above) != 0)
 			{
+				//So we can only hit our head once per jump
 				if(!hitHead)
 				{
+					//Stop our vertical velocity
 					moveVec = new Vector3(moveVec.x, 0, moveVec.z);
 					hitHead = true;
 				}
@@ -91,6 +100,7 @@ public class PlayerControllerMove : MonoBehaviour
 	
 	void ApplyGravity()
 	{
+		//Make gravity happen if we haven't reached terminal velocity
 		if(moveVec.y > -terminalVelocity)
 		{
 			moveVec = new Vector3(moveVec.x, moveVec.y - gravity * Time.deltaTime, moveVec.z);

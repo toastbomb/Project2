@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 	public int dmg = 5;
 	public int def = 0;
 
+	//Generate a list of size 1 to 5
 	public void BuildEnemyList()
 	{
 		int rand = Mathf.FloorToInt(Random.Range(1.0f, 5.0f));

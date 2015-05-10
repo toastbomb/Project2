@@ -21,6 +21,7 @@ public class GameControl : MonoBehaviour
 	public ArrayList enemyList = new ArrayList();
 	public ArrayList sceneActors = new ArrayList();
 
+	//Make sure that we only ever have 1 GameControl
 	void Awake () 
 	{
 		if(control == null)

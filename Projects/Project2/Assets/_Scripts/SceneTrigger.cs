@@ -7,6 +7,7 @@ public class SceneTrigger : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		//If we touch something that is the player then load a new scene
 		if(other.tag == "Player")
 		{
 			if(sceneName != null)
