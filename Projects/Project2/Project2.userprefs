@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\BattleControl.cs">
     <Files>
-      <File FileName="Assets\_Scripts\BattleControl.cs" Line="84" Column="97" />
-      <File FileName="Assets\_Scripts\GameControl.cs" Line="119" Column="1" />
+      <File FileName="Assets\_Scripts\GameControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\BattleControl.cs" Line="135" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -118,9 +118,7 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		else {
-			EnemyTurn ();
-		}
+		EnemyTurn ();
 	}
 	
 	void Melee(){
@@ -138,9 +136,7 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		else {
-			EnemyTurn ();
-		}
+		EnemyTurn ();
 	}
 	
 	void EnemyTurn(){
