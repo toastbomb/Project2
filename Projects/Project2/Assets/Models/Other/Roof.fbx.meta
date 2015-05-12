@@ -6,10 +6,23 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Camera
+    100004: Cube
+    100006: Lamp
+    100008: Plane
     400000: //RootNode
+    400002: Camera
+    400004: Cube
+    400006: Lamp
+    400008: Plane
     2300000: //RootNode
+    2300002: Cube
+    2300004: Plane
     3300000: //RootNode
+    3300002: Cube
+    3300004: Plane
     4300000: Plane
+    4300002: Cube
   materials:
     importMaterials: 0
     materialName: 0
