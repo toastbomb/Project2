@@ -4,10 +4,10 @@ using System.Collections;
 public class Enemy : MonoBehaviour 
 {
 	public ArrayList enemyList = new ArrayList();
-	public int xp = 10;
+	public int xp = (int)(50 / GameControl.control.player_level);
 	public int coins = 3;
 	public int health = 10;
-	public int dmg = 5;
+	public int dmg = 2;
 	public int def = 0;
 
 	//Generate a list of size 1 to 5

@@ -9,11 +9,14 @@ public class GameControl : MonoBehaviour
 	public static GameControl control;
 
 	//Player
-	public int health = 100;
-	public int mana = 50;
+	public int max_health = 15;
+	public int health = 15;
+	public int max_mana = 10;
+	public int mana = 10;
 	public int xp = 0;
 	public int coins = 0;
 	public int dmg = 10;
+	public int player_level = 1;
 
 	//Todo
 	//Items, Badges, Equipped badges
