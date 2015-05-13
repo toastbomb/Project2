@@ -48,6 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\Editor\NoFBXMaterials.cs" />
+     <None Include="Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors_RimOutlineHard.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors_RimLight.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors_RimAlpha.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors_RimOutline.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

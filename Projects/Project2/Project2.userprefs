@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\NoFBXMaterials.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\Toon.shader">
     <Files>
       <File FileName="Assets\Editor\NoFBXMaterials.cs" Line="8" Column="36" />
+      <File FileName="Assets\Shaders\Toon.shader" Line="112" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
