@@ -118,4 +118,5 @@ class PlayerData
 	public int mana;
 	public int xp;
 	public int coins;
+	public int player_level;
 }

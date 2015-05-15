@@ -10,11 +10,12 @@ public class BattleControl : MonoBehaviour
 	public ArrayList enemies = new ArrayList ();
 	int enemyXp = 0;//total xp awarded at end of fight
 	int coins = 0;//total coins awarded at end of fight
-	bool choosing = false;//choosing an enemy to attack
+	string choosing = "";//choosing an enemy to attack
 	bool leveling = false;//leveling up
 
 	public Enemy enemy;
 	public int enemyNum;
+	double HSmult = 1.5;
 
 	//Make sure we only ever have one BattleControl at a time
 	void Awake () 
@@ -52,7 +53,7 @@ public class BattleControl : MonoBehaviour
 	
 	void OnGUI() 
 	{
-		if (choosing) { //Ranged attack UI
+		if (choosing == "basic") { //Ranged attack UI
 			enemyNum = enemies.Count;
 			ArrayList tempList = new ArrayList();
 			for(int i=0; i < enemyNum; i++){
@@ -64,7 +65,23 @@ public class BattleControl : MonoBehaviour
 				if (GUI.Button (new Rect (((Vector3)tempList[i]).x - 40, ((Vector3)tempList[i]).y - 40, 80, 20), "Enemy " + i)) {
 					enemy = (Enemy)enemies [i];
 					Ranged ();
-					choosing = false;
+					choosing = "";
+				}
+			}
+		}
+		else if (choosing == "DT") { //Ranged attack UI
+			enemyNum = enemies.Count;
+			ArrayList tempList = new ArrayList();
+			for(int i=0; i < enemyNum; i++){
+				Vector3 pos = Camera.main.WorldToScreenPoint (((Enemy)enemies[i]).transform.position);
+				tempList.Add(pos);
+			}
+			
+			for (int i=0; i < enemyNum; i++) {
+				if (GUI.Button (new Rect (((Vector3)tempList[i]).x - 40, ((Vector3)tempList[i]).y - 40, 80, 20), "Enemy " + i)) {
+					enemy = (Enemy)enemies [i];
+					DoubleTap (i);
+					choosing = "";
 				}
 			}
 		}
@@ -114,9 +131,23 @@ public class BattleControl : MonoBehaviour
 				{
 					Melee();
 				}
+				int manaCostHS = 3;
+				if(GameControl.control.mana > manaCostHS){
+					if (GUI.Button(new Rect(10, Screen.height - 160, 150, 50), "Heavy Strike: " + manaCostHS +  " mana: \n" + (int)(1.5*((double)GameControl.control.dmg)*HSmult))){
+						GameControl.control.mana -= manaCostHS;
+						HeavyStrike();
+					}
+				}
 				if (GUI.Button(new Rect(170, Screen.height - 110, 150, 100), "Ranged: \n" + (int)(.8*((double)GameControl.control.dmg))))
 				{
-					choosing = true;
+					choosing = "basic";
+				}
+				int manaCostDT = 3;
+				if(GameControl.control.mana > manaCostHS){
+					if (GUI.Button(new Rect(170, Screen.height - 160, 150, 50), "Double Tap: " + manaCostDT +  " mana: \n" + (int)(.8*((double)GameControl.control.dmg)))){
+						GameControl.control.mana -= manaCostDT;
+						choosing = "DT";
+					}
 				}
 				Vector3 pos = Camera.main.WorldToScreenPoint (PlayerManager.player.transform.position);
 				GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health + "/" + GameControl.control.max_health);
@@ -161,11 +192,56 @@ public class BattleControl : MonoBehaviour
 		}
 		EnemyTurn ();
 	}
+
+	void DoubleTap(int i){
+		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
+		if ((i + 1) < enemies.Count) {
+			enemy.health -= playerDmg;
+			if (enemy.health <= 0) {
+				enemies.Remove(enemy);
+				Destroy (enemy.gameObject);
+				enemy = (Enemy)enemies[i];
+			}
+			else{
+				enemy = (Enemy)enemies[i+1];
+			}
+		}
+		enemy.health -= playerDmg;
+		if (enemy.health <= 0) {
+			enemies.Remove(enemy);
+			Destroy (enemy.gameObject);
+			if(enemies.Count == 0){
+				EndOfFight ();
+			}
+			else{
+				enemy = (Enemy)enemies[0];
+			}
+		}
+		EnemyTurn ();
+	}
 	
 	void Melee(){
 		
 		enemy = (Enemy)enemies[0];
 		int playerDmg = (int)(1.5*((double)GameControl.control.dmg));
+		enemy.health -= playerDmg;
+		if (enemy.health <= 0) {
+			enemies.Remove(enemy);
+			Destroy (enemy.gameObject);
+			if(enemies.Count == 0){
+				EndOfFight ();
+			}
+			else{
+				enemy = (Enemy)enemies[0];
+			}
+		}
+		EnemyTurn ();
+	}
+
+	void HeavyStrike(){
+
+		enemy = (Enemy)enemies[0];
+		int playerDmg = (int)(1.5*((double)GameControl.control.dmg)*HSmult);
 		enemy.health -= playerDmg;
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
