@@ -177,7 +177,7 @@ public class BattleControl : MonoBehaviour
 		}
 	}
 	
-	void Ranged(){
+	void Ranged(){ //Basic ranged attack
 		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
 		enemy.health -= playerDmg;
 		if (enemy.health <= 0) {
@@ -193,7 +193,7 @@ public class BattleControl : MonoBehaviour
 		EnemyTurn ();
 	}
 
-	void DoubleTap(int i){
+	void DoubleTap(int i){ //Ranged skill
 		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
 		if ((i + 1) < enemies.Count) {
 			enemy.health -= playerDmg;
@@ -220,7 +220,7 @@ public class BattleControl : MonoBehaviour
 		EnemyTurn ();
 	}
 	
-	void Melee(){
+	void Melee(){ //Basic melee attack
 		
 		enemy = (Enemy)enemies[0];
 		int playerDmg = (int)(1.5*((double)GameControl.control.dmg));
@@ -238,7 +238,7 @@ public class BattleControl : MonoBehaviour
 		EnemyTurn ();
 	}
 
-	void HeavyStrike(){
+	void HeavyStrike(){ //Melee skill
 
 		enemy = (Enemy)enemies[0];
 		int playerDmg = (int)(1.5*((double)GameControl.control.dmg)*HSmult);
@@ -256,7 +256,7 @@ public class BattleControl : MonoBehaviour
 		EnemyTurn ();
 	}
 	
-	void EnemyTurn(){
+	void EnemyTurn(){ //Enemies attack
 		
 		
 		enemyNum = enemies.Count;
@@ -266,20 +266,20 @@ public class BattleControl : MonoBehaviour
 		}
 	}
 
-	void LevelUp(){
+	void LevelUp(){ //Player levels up
 		GameControl.control.player_level += 1;
 		MaxEverything ();
 		leveling = true;
 	}
 
-	void Leave(){
+	void Leave(){ //Exiting the battle
 		//Destroy (enemy.gameObject);
 		PlayerManager.player.transform.position = prevPlayerPos;
 		PlayerManager.player.OnExitBattle ();
 		Destroy (this.transform.parent.gameObject);
 	}
 
-	void MaxEverything(){
+	void MaxEverything(){ //Reset all current values to max (on level up)
 		GameControl.control.health = GameControl.control.max_health;
 		GameControl.control.mana = GameControl.control.max_mana;
 	}
