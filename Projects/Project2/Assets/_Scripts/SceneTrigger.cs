@@ -4,6 +4,7 @@ using System.Collections;
 public class SceneTrigger : MonoBehaviour 
 {
 	public string sceneName;
+	public PlayerManager.LastExit exitDirection = PlayerManager.LastExit.NULL;
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -13,6 +14,7 @@ public class SceneTrigger : MonoBehaviour
 			if(sceneName != null)
 			{
 				GameControl.control.sceneActors.Clear();
+				PlayerManager.player.lastExit = exitDirection;
 				Application.LoadLevel(sceneName);
 			}
 		}

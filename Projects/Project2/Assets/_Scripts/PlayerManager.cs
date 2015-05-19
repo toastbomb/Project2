@@ -6,8 +6,13 @@ public class PlayerManager : MonoBehaviour
 	public static PlayerManager player;
 
 	public PlayerControllerMove playerControllerMove;
+
 	public enum PlayerState{Walking, Talking, Fighting, Dead};
 	public PlayerState playerState = PlayerState.Walking;
+
+	public enum LastExit{North, South, East, West, NULL};
+	public LastExit lastExit = LastExit.NULL;
+
 	public string sceneName;
 
 	//temp
