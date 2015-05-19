@@ -18,6 +18,17 @@ public class GameControl : MonoBehaviour
 	public int dmg = 10;
 	public int player_level = 1;
 	bool checkpoint = false;
+	bool everHitCheckpoint = false;
+	public ArrayList items = new ArrayList();
+
+	//Items
+	const int HEALTHP5 = 1;
+	const int MANAP5 = 2;
+	const int HEALTHFULL = 3;
+	const int MANAFULL = 4;
+
+	//Item testing var
+	bool buying = false;
 
 	//Todo
 	//Items, Badges, Equipped badges
@@ -57,6 +68,7 @@ public class GameControl : MonoBehaviour
 		data.xp = xp;
 		data.coins = coins;
 		data.player_level = player_level;
+		data.items = items;
 		data.posx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
 		data.posy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
 		data.posz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
@@ -86,9 +98,15 @@ public class GameControl : MonoBehaviour
 			xp = data.xp;
 			coins = data.coins;
 			player_level = data.player_level;
+			items = data.items;
 			Vector3 tempPos;
 			if(checkpoint){
-				tempPos = new Vector3(data.checkposx, data.checkposy, data.checkposz);
+				if(everHitCheckpoint){
+					tempPos = new Vector3(data.checkposx, data.checkposy, data.checkposz);
+				}
+				else{
+					tempPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
+				}
 			}
 			else{
 				tempPos = new Vector3(data.posx, data.posy, data.posz);
@@ -108,6 +126,73 @@ public class GameControl : MonoBehaviour
 		checkpoint = true;
 		Load ();
 	}
+
+	//Items
+	public void GainItem(int i){
+		items.Add (i);
+	}
+	public void ConsumeItem(int i){
+		items.Remove (i);
+		if (i == HEALTHP5) {
+			health += 5;
+			if(health > max_health){
+				health = max_health;
+			}
+		} else if (i == MANAP5) {
+			mana += 5;
+			if(mana > max_mana){
+				mana = max_mana;
+			}
+		} else if (i == HEALTHFULL) {
+			health = max_health;
+		} else if (i == MANAFULL) {
+			mana = max_mana;
+		}
+	}
+
+	//for testing items uncommment
+	///*
+	void OnGUI(){
+
+
+		if (buying) {
+			if (GUI.Button (new Rect (Screen.width - 150, 10, 150, 50), "Not Buying")) {
+				buying = false;
+			}
+			if (GUI.Button (new Rect (Screen.width - 150, 60, 150, 50), "Buy: Health + 5")) {
+				GainItem (HEALTHP5);
+			}
+			if (GUI.Button (new Rect (Screen.width - 150, 110, 150, 50), "Buy: Mana + 5")) {
+				GainItem (MANAP5);
+			}
+			if (GUI.Button (new Rect (Screen.width - 150, 160, 150, 50), "Buy: Full Heal")) {
+				GainItem (HEALTHFULL);
+			}
+			if (GUI.Button (new Rect (Screen.width - 150, 210, 150, 50), "Buy: Full Mana")) {
+				GainItem (MANAFULL);
+			}
+		} else {
+			if (GUI.Button (new Rect (Screen.width - 150, 10, 150, 50), "Buying")) {
+				buying = true;
+			}
+			int size = items.Count;
+			ArrayList names = new ArrayList ();
+			names.Add ("None");
+			names.Add ("Health + 5");
+			names.Add ("Mana + 5");
+			names.Add ("Full Heal");
+			names.Add ("Full Mana");
+			for (int i=1; i< (size+1); i++) {
+				if (GUI.Button (new Rect (Screen.width - 150, (float)(10+i*50), 150, 50), (string)names[(int)items[i-1]])) {
+					ConsumeItem ((int)items[i-1]);
+					size--;
+				}
+			}
+		}
+	}
+
+	 //*/
+
 
 	void OnLevelWasLoaded(int level)
 	{
@@ -164,4 +249,5 @@ class PlayerData
 	public float checkposx;
 	public float checkposy;
 	public float checkposz;
+	public ArrayList items;
 }

@@ -53,6 +53,9 @@ public class PlayerManager : MonoBehaviour
 					//Destroy(other.gameObject);
 				}
 			}
+			else if(other.tag == "Checkpoint"){
+				GameControl.control.HitCheckpoint();
+			}
 		}
 	}
 

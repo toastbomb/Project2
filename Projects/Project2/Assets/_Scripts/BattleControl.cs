@@ -263,6 +263,12 @@ public class BattleControl : MonoBehaviour
 		for (int i=0; i < enemyNum; i++) {
 			int enemyDmg = ((Enemy)enemies[i]).dmg;
 			GameControl.control.health -= enemyDmg;
+			if(GameControl.control.health <= 0){
+				Leave ();
+				MaxEverything();
+				GameControl.control.Death ();
+				break;
+			}
 		}
 	}
 
@@ -273,7 +279,6 @@ public class BattleControl : MonoBehaviour
 	}
 
 	void Leave(){ //Exiting the battle
-		//Destroy (enemy.gameObject);
 		PlayerManager.player.transform.position = prevPlayerPos;
 		PlayerManager.player.OnExitBattle ();
 		Destroy (this.transform.parent.gameObject);
