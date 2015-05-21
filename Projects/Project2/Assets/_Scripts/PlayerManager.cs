@@ -7,11 +7,8 @@ public class PlayerManager : MonoBehaviour
 
 	public PlayerControllerMove playerControllerMove;
 
-	public enum PlayerState{Walking, Talking, Fighting, Dead};
+	public enum PlayerState{Walking, Talking, Fighting, Dead, Buying};
 	public PlayerState playerState = PlayerState.Walking;
-
-	public enum LastExit{North, South, East, West, NULL};
-	public LastExit lastExit = LastExit.NULL;
 
 	public string sceneName;
 

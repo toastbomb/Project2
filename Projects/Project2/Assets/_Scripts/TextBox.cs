@@ -30,6 +30,12 @@ public class TextBox : MonoBehaviour
 	void OnDisable()
 	{
 		DialogueLoop();
+		PlayerManager.player.playerState = PlayerManager.PlayerState.Walking;
+	}
+
+	void OnEnable()
+	{
+		PlayerManager.player.playerState = PlayerManager.PlayerState.Talking;
 	}
 
 	public void NextText()

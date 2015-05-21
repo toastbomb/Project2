@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour 
 {
@@ -36,6 +37,8 @@ public class GameControl : MonoBehaviour
 	public ArrayList enemyList = new ArrayList();
 	public ArrayList sceneActors = new ArrayList();
 
+	//UI Bindings
+
 	//Make sure that we only ever have 1 GameControl
 	void Awake () 
 	{
@@ -48,11 +51,6 @@ public class GameControl : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-	}
-
-	void Start()
-	{
-		CacheActors(Application.loadedLevel);
 	}
 
 	public void Save() //Should be used when quiting
@@ -152,6 +150,7 @@ public class GameControl : MonoBehaviour
 
 	//for testing items uncommment
 	///*
+	/*
 	void OnGUI(){
 
 
@@ -190,47 +189,9 @@ public class GameControl : MonoBehaviour
 			}
 		}
 	}
-
-	 //*/
-
-
-	void OnLevelWasLoaded(int level)
-	{
-		CacheActors(level);
-	}
-	void CacheActors(int level)
-	{
-		if(level != 0)
-		{
-			if(sceneActors.Count == 0)
-			{
-				sceneActors.Add(GameObject.FindGameObjectWithTag("Player"));
-				GameObject[] actors = GameObject.FindGameObjectsWithTag("Enemy");
-				
-				foreach(GameObject actor in actors)
-				{
-					sceneActors.Add(actor);
-				}
-			}
-			else
-			{
-				GameObject[] actors = GameObject.FindGameObjectsWithTag("Enemy");
-				
-				foreach(GameObject actor in actors)
-				{
-					Destroy(actor);
-				}
-				
-				foreach(GameObject obj in sceneActors)
-				{
-					Instantiate(obj);
-				}
-				
-			}
-		}
-	}
+	*/
 }
-	
+
 
 
 [Serializable]

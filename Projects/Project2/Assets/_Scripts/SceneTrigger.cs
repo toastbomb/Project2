@@ -4,7 +4,7 @@ using System.Collections;
 public class SceneTrigger : MonoBehaviour 
 {
 	public string sceneName;
-	public PlayerManager.LastExit exitDirection = PlayerManager.LastExit.NULL;
+	public Vector3 teleportLocation;
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -14,8 +14,8 @@ public class SceneTrigger : MonoBehaviour
 			if(sceneName != null)
 			{
 				GameControl.control.sceneActors.Clear();
-				PlayerManager.player.lastExit = exitDirection;
-				Application.LoadLevel(sceneName);
+				PlayerManager.player.transform.position = teleportLocation;
+				SceneFadeInOut.sceneFadeInOut.EndScene(sceneName);
 			}
 		}
 	}

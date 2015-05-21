@@ -8,6 +8,12 @@ public class NPC : MonoBehaviour
 	private List<string> conversationList = new List<string>();
 	private bool inRangeOfPlayer = false;
 
+	public enum StoreType{StoreConsumable, StoreBadges, Conversation};
+	public StoreType storeType = StoreType.Conversation;
+
+	public Store consumableStore;
+	public Store badgeStore;
+
 	void Start () 
 	{
 		foreach(string text in conversation)
@@ -17,11 +23,22 @@ public class NPC : MonoBehaviour
 	}
 	void Update () 
 	{
-		if(inRangeOfPlayer)
+		if(inRangeOfPlayer && PlayerManager.player.playerState == PlayerManager.PlayerState.Walking)
 		{
 			if(Input.GetKeyUp(KeyCode.E))
 			{
-				TextBox.textBox.StartTalking(new List<string>(conversationList));
+				switch(storeType)
+				{
+				case StoreType.Conversation:
+					TextBox.textBox.StartTalking(new List<string>(conversationList));
+					break;
+				case StoreType.StoreBadges:
+					badgeStore.EnterStore();
+					break;
+				case StoreType.StoreConsumable:
+					consumableStore.EnterStore();
+					break;
+				}
 			}
 		}
 	}
