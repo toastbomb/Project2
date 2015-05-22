@@ -55,33 +55,48 @@ public class BattleControl : MonoBehaviour
 	{
 		if (choosing == "basic") { //Ranged attack UI
 			enemyNum = enemies.Count;
-			ArrayList tempList = new ArrayList();
-			for(int i=0; i < enemyNum; i++){
-				Vector3 pos = Camera.main.WorldToScreenPoint (((Enemy)enemies[i]).transform.position);
-				tempList.Add(pos);
+			ArrayList tempList = new ArrayList ();
+			for (int i=0; i < enemyNum; i++) {
+				Vector3 pos = Camera.main.WorldToScreenPoint (((Enemy)enemies [i]).transform.position);
+				tempList.Add (pos);
 			}
 			
 			for (int i=0; i < enemyNum; i++) {
-				if (GUI.Button (new Rect (((Vector3)tempList[i]).x - 40, ((Vector3)tempList[i]).y - 40, 80, 20), "Enemy " + i)) {
+				if (GUI.Button (new Rect (((Vector3)tempList [i]).x - 40, ((Vector3)tempList [i]).y - 40, 80, 20), "Enemy " + i)) {
 					enemy = (Enemy)enemies [i];
 					Ranged ();
 					choosing = "";
 				}
 			}
-		}
-		else if (choosing == "DT") { //Ranged attack UI
+		} else if (choosing == "DT") { //Ranged attack UI
 			enemyNum = enemies.Count;
-			ArrayList tempList = new ArrayList();
-			for(int i=0; i < enemyNum; i++){
-				Vector3 pos = Camera.main.WorldToScreenPoint (((Enemy)enemies[i]).transform.position);
-				tempList.Add(pos);
+			ArrayList tempList = new ArrayList ();
+			for (int i=0; i < enemyNum; i++) {
+				Vector3 pos = Camera.main.WorldToScreenPoint (((Enemy)enemies [i]).transform.position);
+				tempList.Add (pos);
 			}
 			
 			for (int i=0; i < enemyNum; i++) {
-				if (GUI.Button (new Rect (((Vector3)tempList[i]).x - 40, ((Vector3)tempList[i]).y - 40, 80, 20), "Enemy " + i)) {
+				if (GUI.Button (new Rect (((Vector3)tempList [i]).x - 40, ((Vector3)tempList [i]).y - 40, 80, 20), "Enemy " + i)) {
 					enemy = (Enemy)enemies [i];
 					DoubleTap (i);
 					choosing = "";
+				}
+			}
+		} else if (choosing == "CI") { //Consumable items
+			int size = GameControl.control.items.Count;
+			ArrayList names = new ArrayList ();
+			names.Add ("None");
+			names.Add ("Health + 5");
+			names.Add ("Mana + 5");
+			names.Add ("Full Heal");
+			names.Add ("Full Mana");
+			for (int i=1; i< (size+1); i++) {
+				if (GUI.Button (new Rect (Screen.width - 150, (float)(10 + i * 50), 150, 50), (string)names [(int)((GameControl.control.items) [i - 1])])) {
+					GameControl.control.ConsumeItem ((int)((GameControl.control.items) [i - 1]));
+					size--;
+					choosing = "";
+					EnemyTurn();
 				}
 			}
 		}
@@ -148,6 +163,10 @@ public class BattleControl : MonoBehaviour
 						GameControl.control.mana -= manaCostDT;
 						choosing = "DT";
 					}
+				}
+				if (GUI.Button(new Rect(330, Screen.height - 110, 150, 100), "Use Consumable"))
+				{
+					choosing = "CI";
 				}
 				Vector3 pos = Camera.main.WorldToScreenPoint (PlayerManager.player.transform.position);
 				GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health + "/" + GameControl.control.max_health);

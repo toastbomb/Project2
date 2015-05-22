@@ -149,7 +149,6 @@ public class GameControl : MonoBehaviour
 	}
 
 	//for testing items uncommment
-	///*
 	/*
 	void OnGUI(){
 
