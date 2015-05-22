@@ -13,7 +13,6 @@ public class SceneTrigger : MonoBehaviour
 		{
 			if(sceneName != null)
 			{
-				GameControl.control.sceneActors.Clear();
 				PlayerManager.player.transform.position = teleportLocation;
 				SceneFadeInOut.sceneFadeInOut.EndScene(sceneName);
 			}

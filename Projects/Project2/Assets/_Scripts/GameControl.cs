@@ -35,9 +35,6 @@ public class GameControl : MonoBehaviour
 	//Items, Badges, Equipped badges
 
 	public ArrayList enemyList = new ArrayList();
-	public ArrayList sceneActors = new ArrayList();
-
-	//UI Bindings
 
 	//Make sure that we only ever have 1 GameControl
 	void Awake () 
