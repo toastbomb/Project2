@@ -84,7 +84,7 @@ public class BattleControl : MonoBehaviour
 				}
 			}
 		} else if (choosing == "CI") { //Consumable items
-			int size = GameControl.control.items.Count;
+			int size = GameControl.control.consumables.Count;
 			ArrayList names = new ArrayList ();
 			names.Add ("None");
 			names.Add ("Health + 5");
@@ -92,8 +92,8 @@ public class BattleControl : MonoBehaviour
 			names.Add ("Full Heal");
 			names.Add ("Full Mana");
 			for (int i=1; i< (size+1); i++) {
-				if (GUI.Button (new Rect (Screen.width - 150, (float)(10 + i * 50), 150, 50), (string)names [(int)((GameControl.control.items) [i - 1])])) {
-					GameControl.control.ConsumeItem ((int)((GameControl.control.items) [i - 1]));
+				if (GUI.Button (new Rect (Screen.width - 150, (float)(10 + i * 50), 150, 50), (string)names [(int)((GameControl.control.consumables) [i - 1])])) {
+					GameControl.control.ConsumeItem ((int)((GameControl.control.consumables) [i - 1]));
 					size--;
 					choosing = "";
 					EnemyTurn();
@@ -125,9 +125,10 @@ public class BattleControl : MonoBehaviour
 						Leave ();
 					}
 				}
-				if(GUI.Button(new Rect((Screen.width*3)/4, Screen.height/2, 150, 100), "Something else")){
+				if(GUI.Button(new Rect((Screen.width*3)/4, Screen.height/2, 150, 100), "Equipment Points + 3")){
 					leveling = false;
-					//GameControl.control.whatever
+					GameControl.control.max_bp += 3;
+					GameControl.control.bp += 3;
 					MaxEverything();
 					if (GameControl.control.xp >= 100) {
 						GameControl.control.xp -= 100;
@@ -142,7 +143,7 @@ public class BattleControl : MonoBehaviour
 				{
 					EndOfFight();
 				}
-				if (GUI.Button(new Rect(10, Screen.height - 110, 150, 100), "Melee: \n" + (int)(1.5*((double)GameControl.control.dmg))))
+				if (GUI.Button(new Rect(10, Screen.height - 110, 150, 100), "Melee: \n" + (int)((double)GameControl.control.dmg)))
 				{
 					Melee();
 				}
@@ -153,13 +154,13 @@ public class BattleControl : MonoBehaviour
 						HeavyStrike();
 					}
 				}
-				if (GUI.Button(new Rect(170, Screen.height - 110, 150, 100), "Ranged: \n" + (int)(.8*((double)GameControl.control.dmg))))
+				if (GUI.Button(new Rect(170, Screen.height - 110, 150, 100), "Ranged: \n" + (int)((double)GameControl.control.dmg)))
 				{
 					choosing = "basic";
 				}
 				int manaCostDT = 3;
 				if(GameControl.control.mana > manaCostHS){
-					if (GUI.Button(new Rect(170, Screen.height - 160, 150, 50), "Double Tap: " + manaCostDT +  " mana: \n" + (int)(.8*((double)GameControl.control.dmg)))){
+					if (GUI.Button(new Rect(170, Screen.height - 160, 150, 50), "Double Tap: " + manaCostDT +  " mana: \n" + (int)(.5*((double)GameControl.control.dmg)))){
 						GameControl.control.mana -= manaCostDT;
 						choosing = "DT";
 					}
@@ -169,7 +170,7 @@ public class BattleControl : MonoBehaviour
 					choosing = "CI";
 				}
 				Vector3 pos = Camera.main.WorldToScreenPoint (PlayerManager.player.transform.position);
-				GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health + "/" + GameControl.control.max_health);
+				//GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health + "/" + GameControl.control.max_health);
 				//Enemy hp
 				enemyNum = enemies.Count;
 				ArrayList tempList = new ArrayList();
@@ -197,8 +198,11 @@ public class BattleControl : MonoBehaviour
 	}
 	
 	void Ranged(){ //Basic ranged attack
-		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
-		enemy.health -= playerDmg;
+		int playerDmg = (int)((double)GameControl.control.dmg);
+		int dmg_dealt = (playerDmg - enemy.def);
+		if(dmg_dealt > 0){
+			enemy.health -= dmg_dealt;
+		}
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
@@ -213,9 +217,13 @@ public class BattleControl : MonoBehaviour
 	}
 
 	void DoubleTap(int i){ //Ranged skill
-		int playerDmg = (int)(.8*((double)GameControl.control.dmg));
+		int playerDmg = (int)(.5*((double)GameControl.control.dmg));
+		int dmg_dealt = 0;
 		if ((i + 1) < enemies.Count) {
-			enemy.health -= playerDmg;
+			dmg_dealt = (playerDmg - enemy.def);
+			if(dmg_dealt > 0){
+				enemy.health -= dmg_dealt;
+			}
 			if (enemy.health <= 0) {
 				enemies.Remove(enemy);
 				Destroy (enemy.gameObject);
@@ -225,7 +233,10 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[i+1];
 			}
 		}
-		enemy.health -= playerDmg;
+		dmg_dealt = (playerDmg - enemy.def);
+		if(dmg_dealt > 0){
+			enemy.health -= dmg_dealt;
+		}
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
@@ -242,8 +253,11 @@ public class BattleControl : MonoBehaviour
 	void Melee(){ //Basic melee attack
 		
 		enemy = (Enemy)enemies[0];
-		int playerDmg = (int)(1.5*((double)GameControl.control.dmg));
-		enemy.health -= playerDmg;
+		int playerDmg = (int)((double)GameControl.control.dmg);
+		int dmg_dealt = (playerDmg - enemy.def);
+		if(dmg_dealt > 0){
+			enemy.health -= dmg_dealt;
+		}
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
@@ -261,7 +275,10 @@ public class BattleControl : MonoBehaviour
 
 		enemy = (Enemy)enemies[0];
 		int playerDmg = (int)(1.5*((double)GameControl.control.dmg)*HSmult);
-		enemy.health -= playerDmg;
+		int dmg_dealt = (playerDmg - enemy.def);
+		if(dmg_dealt > 0){
+			enemy.health -= dmg_dealt;
+		}
 		if (enemy.health <= 0) {
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
@@ -281,7 +298,10 @@ public class BattleControl : MonoBehaviour
 		enemyNum = enemies.Count;
 		for (int i=0; i < enemyNum; i++) {
 			int enemyDmg = ((Enemy)enemies[i]).dmg;
-			GameControl.control.health -= enemyDmg;
+			int dmg_dealt = (enemyDmg - GameControl.control.def);
+			if(dmg_dealt > 0){
+				GameControl.control.health -= dmg_dealt;
+			}
 			if(GameControl.control.health <= 0){
 				Leave ();
 				MaxEverything();
