@@ -187,7 +187,7 @@ public class BattleControl : MonoBehaviour
 	
 	void EndOfFight()
 	{
-		GameControl.control.xp += enemyXp;
+		GameControl.control.xp += (enemyXp / GameControl.control.player_level);
 		GameControl.control.coins += coins;
 		if (GameControl.control.xp >= 100) {
 			GameControl.control.xp -= 100;

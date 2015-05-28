@@ -9,11 +9,13 @@ public class Enemy : MonoBehaviour
 	public int health = 2;
 	public int dmg = 1;
 	public int def = 0;
+	public float spawn_max = 3.0f;
+	public float spawn_min = 1.0f;
 
 	//Generate a list of size 1 to 5
 	public void BuildEnemyList()
 	{
-		int rand = Mathf.FloorToInt(Random.Range(1.0f, 3.0f));
+		int rand = Mathf.FloorToInt(Random.Range(spawn_min, spawn_max));
 
 		for(int i = 0; i < rand; i++)
 		{
