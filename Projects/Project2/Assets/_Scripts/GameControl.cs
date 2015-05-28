@@ -21,11 +21,16 @@ public class GameControl : MonoBehaviour
 	public int max_bp = 3;
 	public int bp = 3;
 	public int player_level = 1;
+	public string current_scene = "test";
+	public string check_scene = "test";
 	bool checkpoint = false;
 	bool everHitCheckpoint = false;
 	public ArrayList consumables = new ArrayList();
 	public ArrayList equipment = new ArrayList ();
 	public ArrayList equiped = new ArrayList ();
+	float checkposx;
+	float checkposy;
+	float checkposz;
 
 	//Consumables
 	const int HEALTHP5 = 1;
@@ -67,6 +72,28 @@ public class GameControl : MonoBehaviour
 		FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
 		PlayerData data = new PlayerData();
+		data.posx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
+		data.posy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
+		data.posz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
+		if (checkpoint) {
+			//print ("check");
+			data.checkposx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
+			data.checkposy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
+			data.checkposz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
+			checkposx = data.checkposx;
+			checkposy = data.checkposy;
+			checkposz = data.checkposz;
+			check_scene = Application.loadedLevelName;
+			data.check_scene = check_scene;
+			health = max_health;
+			mana = max_mana;
+		} else {
+			//print ("check");
+			data.checkposx = checkposx;
+			data.checkposy = checkposy;
+			data.checkposz = checkposz;
+			data.check_scene = check_scene;
+		}
 		data.max_health = max_health;
 		data.health = health;
 		data.max_mana = max_mana;
@@ -81,14 +108,9 @@ public class GameControl : MonoBehaviour
 		data.consumables = consumables;
 		data.equipment = equipment;
 		data.equiped = equiped;
-		data.posx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
-		data.posy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
-		data.posz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
-		if (checkpoint) {
-			data.checkposx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
-			data.checkposy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
-			data.checkposz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
-		}
+		current_scene = Application.loadedLevelName;
+		data.current_scene = current_scene;
+
 		checkpoint = false;
 		bf.Serialize(file, data);
 		file.Close();
@@ -117,18 +139,29 @@ public class GameControl : MonoBehaviour
 			consumables = data.consumables;
 			equipment = data.equipment;
 			equiped = data.equiped;
+			current_scene = data.current_scene;
+			//print(data.check_scene);
+			//print (check_scene);
+			//check_scene = data.check_scene;
+			//print (check_scene);
 			Vector3 tempPos;
+			string temp_scene;
 			if(checkpoint){
 				if(everHitCheckpoint){
 					tempPos = new Vector3(data.checkposx, data.checkposy, data.checkposz);
+					temp_scene = check_scene;
 				}
 				else{
 					tempPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
+					temp_scene = current_scene;
 				}
 			}
 			else{
 				tempPos = new Vector3(data.posx, data.posy, data.posz);
+				temp_scene = current_scene;
 			}
+			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
+			SceneFadeInOut.sceneFadeInOut.EndScene(temp_scene);
 			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
 			checkpoint = false;
 
@@ -136,11 +169,12 @@ public class GameControl : MonoBehaviour
 	}
 
 	public void HitCheckpoint(){ //When you hit a checkpoint
+		everHitCheckpoint = true;
 		checkpoint = true;
 		Save ();
 	}
 	public void Death(){ //On player death
-		Save ();
+		//Save ();
 		checkpoint = true;
 		Load ();
 	}
@@ -300,6 +334,8 @@ class PlayerData
 	public int max_bp;
 	public int bp;
 	public int player_level;
+	public string current_scene;
+	public string check_scene;
 	public float posx;
 	public float posy;
 	public float posz;

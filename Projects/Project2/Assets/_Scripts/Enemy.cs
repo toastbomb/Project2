@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour 
 {
 	public ArrayList enemyList = new ArrayList();
-	public int xp = (int)(20 / GameControl.control.player_level);
+	public int xp = 20;
 	public int coins = 3;
 	public int health = 2;
 	public int dmg = 1;
