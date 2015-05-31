@@ -1,17 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\NPC.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\TextBox.cs">
     <Files>
-      <File FileName="Assets\_Scripts\Enemy.cs" Line="13" Column="32" />
-      <File FileName="Assets\_Scripts\SceneTrigger.cs" Line="15" Column="5" />
-      <File FileName="Assets\_Scripts\PlayerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\SceneFadeInOut.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\PlayerControllerMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\GameControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\BattleControl.cs" Line="190" Column="73" />
-      <File FileName="Assets\_Scripts\Store.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\TextBox.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\NPC.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\SceneFadeInOut.cs" Line="25" Column="28" />
+      <File FileName="Assets\_Scripts\SceneTrigger.cs" Line="17" Column="36" />
+      <File FileName="Assets\_Scripts\TextBox.cs" Line="70" Column="1" />
+      <File FileName="Assets\_Scripts\Store.cs" Line="13" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
