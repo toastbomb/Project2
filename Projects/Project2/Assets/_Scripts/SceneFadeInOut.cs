@@ -9,6 +9,7 @@ public class SceneFadeInOut : MonoBehaviour
 	public float fadeSpeed = 1.5f;
 	private bool sceneStarting = true;
 	public Image fader;
+	private string level = "";
 
 	void Awake()
 	{
@@ -21,7 +22,7 @@ public class SceneFadeInOut : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		fader.color = Color.black;
+		fader.color = Color.clear;
 	}
 
 	void Update()
@@ -34,19 +35,19 @@ public class SceneFadeInOut : MonoBehaviour
 
 	void FadeToClear()
 	{
-		fader.color = Color.Lerp (fader.color, Color.clear, fadeSpeed * Time.deltaTime);
+		//fader.color = Color.Lerp (fader.color, Color.clear, fadeSpeed * Time.deltaTime);
 	}
 
 	void FadeToBlack()
 	{
-		fader.color = Color.Lerp (fader.color, Color.black, fadeSpeed * Time.deltaTime);
+		//fader.color = Color.Lerp (fader.color, Color.black, fadeSpeed * Time.deltaTime);
 	}
 
 	void StartScene()
 	{
 		FadeToClear ();
 
-		if(fader.color.a <= 0.05f)
+		if(fader.color.a <= 0.02f)
 		{
 			fader.color = Color.clear;
 			fader.enabled = false;
@@ -59,11 +60,16 @@ public class SceneFadeInOut : MonoBehaviour
 		fader.enabled = true;
 		FadeToBlack();
 		print ("bla");
-		Application.LoadLevel(sceneName);
 
-		if(fader.color.a >= 0.95f)
+		if(fader.color.a >= 0.98f)
 		{
-			Application.LoadLevel(sceneName);
+			level = sceneName;
+			Invoke("LoadTheLevel", 1);
 		}
+	}
+
+	void LoadTheLevel()
+	{
+		Application.LoadLevel(level);
 	}
 }

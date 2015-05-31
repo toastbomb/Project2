@@ -14,7 +14,7 @@ public class SceneTrigger : MonoBehaviour
 			if(sceneName != null)
 			{
 				PlayerManager.player.transform.position = teleportLocation;
-				SceneFadeInOut.sceneFadeInOut.EndScene(sceneName);
+				Application.LoadLevel(sceneName);
 			}
 		}
 	}
