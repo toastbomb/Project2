@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UpdateUIValue : MonoBehaviour 
 {
 	public Text myText;
-	public enum UpdateVal{Health, Mana, Coins};
+	public enum UpdateVal{Health, Mana, Coins, XP};
 	public UpdateVal updateVal = UpdateVal.Health;
 
 	void Update () 
@@ -21,6 +21,9 @@ public class UpdateUIValue : MonoBehaviour
 		case UpdateVal.Coins:
 			myText.text = "x " + GameControl.control.coins.ToString();
 			break;
+		case UpdateVal.XP:
+			myText.text = "x " + GameControl.control.xp.ToString();
+		break;
 		}
 	}
 }

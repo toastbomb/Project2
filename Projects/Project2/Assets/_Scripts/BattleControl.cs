@@ -17,6 +17,8 @@ public class BattleControl : MonoBehaviour
 	public int enemyNum;
 	double HSmult = 1.5;
 
+	private int i = 0;
+
 	//Make sure we only ever have one BattleControl at a time
 	void Awake () 
 	{
@@ -96,7 +98,7 @@ public class BattleControl : MonoBehaviour
 					GameControl.control.ConsumeItem ((int)((GameControl.control.consumables) [i - 1]));
 					size--;
 					choosing = "";
-					EnemyTurn();
+					ChangeToEnemyTurn();
 				}
 			}
 		}
@@ -213,7 +215,7 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		EnemyTurn ();
+		ChangeToEnemyTurn();
 	}
 
 	void DoubleTap(int i){ //Ranged skill
@@ -247,7 +249,7 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		EnemyTurn ();
+		ChangeToEnemyTurn();
 	}
 	
 	void Melee(){ //Basic melee attack
@@ -268,7 +270,7 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		EnemyTurn ();
+		ChangeToEnemyTurn();
 	}
 
 	void HeavyStrike(){ //Melee skill
@@ -289,26 +291,38 @@ public class BattleControl : MonoBehaviour
 				enemy = (Enemy)enemies[0];
 			}
 		}
-		EnemyTurn ();
+		ChangeToEnemyTurn();
+	}
+
+	void ChangeToEnemyTurn()
+	{
+		i = 0;
+		Invoke("EnemyTurn", 2);
 	}
 	
 	void EnemyTurn(){ //Enemies attack
-		
-		
-		enemyNum = enemies.Count;
-		for (int i=0; i < enemyNum; i++) {
-			int enemyDmg = ((Enemy)enemies[i]).dmg;
-			int dmg_dealt = (enemyDmg - GameControl.control.def);
-			if(dmg_dealt > 0){
-				GameControl.control.health -= dmg_dealt;
-			}
-			if(GameControl.control.health <= 0){
-				Leave ();
-				MaxEverything();
-				GameControl.control.Death ();
-				break;
-			}
+		if( i >= enemies.Count )
+		{
+			return;
 		}
+		int enemyDmg = ((Enemy)enemies[i]).dmg;
+		int dmg_dealt = (enemyDmg - GameControl.control.def);
+		if(dmg_dealt > 0){
+			GameControl.control.health -= dmg_dealt;
+		}
+		if(GameControl.control.health <= 0){
+			Leave ();
+			MaxEverything();
+			GameControl.control.Death ();
+			return;
+		}
+		AdvanceEnemyTurn();
+	}
+
+	void AdvanceEnemyTurn()
+	{
+		i = i + 1;
+		Invoke("EnemyTurn", 2);
 	}
 
 	void LevelUp(){ //Player levels up

@@ -184,6 +184,7 @@ public class GameControl : MonoBehaviour
 	//Consumables
 	public void GainItem(int i){
 		consumables.Add (i);
+		print (consumables.Count);
 	}
 	public void ConsumeItem(int i){
 		consumables.Remove (i);
@@ -201,6 +202,17 @@ public class GameControl : MonoBehaviour
 			health = max_health;
 		} else if (i == MANAFULL) {
 			mana = max_mana;
+		}
+	}
+
+	public void ConsumeItem2(int i)
+	{
+		for(int j = 0; j < consumables.Count; j++)
+		{
+			if(GameControl.control.consumables[j].Equals(i))
+			{
+				ConsumeItem(i);
+			}
 		}
 	}
 

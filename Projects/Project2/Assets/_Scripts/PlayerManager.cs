@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 
 	public PlayerControllerMove playerControllerMove;
 
-	public enum PlayerState{Walking, Talking, Fighting, Dead, Buying};
+	public enum PlayerState{Walking, Talking, Fighting, Dead, Buying, Paused};
 	public PlayerState playerState = PlayerState.Walking;
 
 	public string sceneName;
@@ -33,6 +33,11 @@ public class PlayerManager : MonoBehaviour
 		if(playerState == PlayerState.Walking)
 		{
 			playerControllerMove.UpdateMoveController();
+		}
+
+		if(Input.GetKeyDown("i"))
+		{
+			PauseScreen.instance.OnStartPause();
 		}
 	}
 	
