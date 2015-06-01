@@ -66,6 +66,56 @@ public class GameControl : MonoBehaviour
 		}
 	}
 
+	public void ClearSave()
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
+		
+		PlayerData data = new PlayerData();
+		data.posx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
+		data.posy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
+		data.posz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
+		if (checkpoint) {
+			//print ("check");
+			data.checkposx = GameObject.FindGameObjectWithTag ("Player").transform.position.x;
+			data.checkposy = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
+			data.checkposz = GameObject.FindGameObjectWithTag ("Player").transform.position.z;
+			checkposx = data.checkposx;
+			checkposy = data.checkposy;
+			checkposz = data.checkposz;
+			check_scene = Application.loadedLevelName;
+			data.check_scene = check_scene;
+			health = max_health;
+			mana = max_mana;
+		} else {
+			//print ("check");
+			data.checkposx = checkposx;
+			data.checkposy = checkposy;
+			data.checkposz = checkposz;
+			data.check_scene = check_scene;
+		}
+		data.max_health = 15;
+		data.health = 15;
+		data.max_mana = 10;
+		data.mana = 10;
+		data.xp = 0;
+		data.coins = 0;
+		data.dmg = 2;
+		data.def = 0;
+		data.bp = 3;
+		data.max_bp = 3;
+		data.player_level = 1;
+		data.consumables = new ArrayList();
+		data.equipment = new ArrayList();
+		data.equiped = new ArrayList();
+		current_scene = "Desert";
+		data.current_scene = "Desert";
+		
+		checkpoint = false;
+		bf.Serialize(file, data);
+		file.Close();
+	}
+
 	public void Save() //Should be used when quiting
 	{
 		BinaryFormatter bf = new BinaryFormatter();

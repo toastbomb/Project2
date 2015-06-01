@@ -13,4 +13,9 @@ public class MainMenuButton : MonoBehaviour {
 		GameControl.control.Load();
 		Application.LoadLevel(GameControl.control.current_scene);
 	}
+
+	public void ClearGame()
+	{
+		GameControl.control.ClearSave();
+	}
 }
