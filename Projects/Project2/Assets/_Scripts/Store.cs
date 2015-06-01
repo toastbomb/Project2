@@ -8,11 +8,6 @@ public class Store : MonoBehaviour
 		this.gameObject.SetActive (false);
 	}
 
-	void OnEnable()
-	{
-		PlayerManager.player.playerState = PlayerManager.PlayerState.Buying;
-	}
-
 	void OnDisable()
 	{
 		PlayerManager.player.playerState = PlayerManager.PlayerState.Walking;
@@ -20,6 +15,7 @@ public class Store : MonoBehaviour
 
 	public void EnterStore()
 	{
+		PlayerManager.player.playerState = PlayerManager.PlayerState.Buying;
 		this.gameObject.SetActive (true);
 	}
 

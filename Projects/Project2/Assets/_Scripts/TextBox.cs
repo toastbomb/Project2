@@ -33,11 +33,6 @@ public class TextBox : MonoBehaviour
 		PlayerManager.player.playerState = PlayerManager.PlayerState.Walking;
 	}
 
-	void OnEnable()
-	{
-		PlayerManager.player.playerState = PlayerManager.PlayerState.Talking;
-	}
-
 	public void NextText()
 	{
 		DialogueLoop();
@@ -77,6 +72,7 @@ public class TextBox : MonoBehaviour
 
 	public void StartTalking(List<string> dial)
 	{
+		PlayerManager.player.playerState = PlayerManager.PlayerState.Talking;
 		dialogues.Clear();
 		dialogues = dial;
 		DialogueLoop();

@@ -48,9 +48,13 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\BattleControl.cs" />
      <Compile Include="Assets\_Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\_Scripts\ConsumeButton.cs" />
      <Compile Include="Assets\_Scripts\Enemy.cs" />
+     <Compile Include="Assets\_Scripts\EquipButton.cs" />
+     <Compile Include="Assets\_Scripts\EquipmentButton.cs" />
      <Compile Include="Assets\_Scripts\FPSDisplay.cs" />
      <Compile Include="Assets\_Scripts\GameControl.cs" />
+     <Compile Include="Assets\_Scripts\ItemButton.cs" />
      <Compile Include="Assets\_Scripts\NPC.cs" />
      <Compile Include="Assets\_Scripts\PauseScreen.cs" />
      <Compile Include="Assets\_Scripts\PlayerControllerMove.cs" />

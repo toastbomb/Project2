@@ -43,11 +43,6 @@ public class PauseScreen : MonoBehaviour
 	{
 		this.gameObject.SetActive (false);
 	}
-
-	void OnEnable()
-	{
-		PlayerManager.player.playerState = PlayerManager.PlayerState.Paused;
-	}
 	
 	void OnDisable()
 	{
@@ -56,38 +51,38 @@ public class PauseScreen : MonoBehaviour
 		{
 			GameObject.Destroy(child.gameObject);
 		}
-		//foreach(Transform child in contentPanelEquipment)
-		//{
-		//	GameObject.Destroy(child.gameObject);
-		//}
-		//foreach(Transform child in contentPanelEquip)
-		//{
-		//	GameObject.Destroy(child.gameObject);
-		//}
+		foreach(Transform child in contentPanelEquipment)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
+		foreach(Transform child in contentPanelEquip)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
 	}
 
 	public void Refresh()
 	{
-		print ("bla");
 		foreach(Transform child in contentPanelConsume)
 		{
 			GameObject.Destroy(child.gameObject);
 		}
-		//foreach(Transform child in contentPanelEquipment)
-		//{
-		//	GameObject.Destroy(child.gameObject);
-		//}
-		//foreach(Transform child in contentPanelEquip)
-		//{
-		//	GameObject.Destroy(child.gameObject);
-		//}
+		foreach(Transform child in contentPanelEquipment)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
+		foreach(Transform child in contentPanelEquip)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
 		PopulateListConsume();
-		//PopulateListEquipment();
-		//PopulateListEquipped();
+		PopulateListEquipment();
+		PopulateListEquipped();
 	}
 
 	public void OnStartPause()
 	{
+		PlayerManager.player.playerState = PlayerManager.PlayerState.Paused;
 		this.gameObject.SetActive (true);
 		Refresh();
 	}
@@ -99,10 +94,8 @@ public class PauseScreen : MonoBehaviour
 	
 	public void PopulateListConsume () 
 	{
-		print (GameControl.control.consumables.Count);
 		for(int i = 0; i < GameControl.control.consumables.Count; i++)
 		{
-			print (i);
 			if(GameControl.control.consumables[i].Equals(1))
 			{
 				GameObject newButton = Instantiate (HP5) as GameObject;
