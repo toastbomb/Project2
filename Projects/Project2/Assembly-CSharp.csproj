@@ -61,11 +61,13 @@
      <Compile Include="Assets\_Scripts\PauseScreen.cs" />
      <Compile Include="Assets\_Scripts\PlayerControllerMove.cs" />
      <Compile Include="Assets\_Scripts\PlayerManager.cs" />
+     <Compile Include="Assets\_Scripts\Rotate.cs" />
      <Compile Include="Assets\_Scripts\SceneFadeInOut.cs" />
      <Compile Include="Assets\_Scripts\SceneTrigger.cs" />
      <Compile Include="Assets\_Scripts\Store.cs" />
      <Compile Include="Assets\_Scripts\TextBox.cs" />
      <Compile Include="Assets\_Scripts\UpdateUIValue.cs" />
+     <Compile Include="Assets\_Scripts\UseConsume.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

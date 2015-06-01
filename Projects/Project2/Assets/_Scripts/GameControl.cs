@@ -182,8 +182,40 @@ public class GameControl : MonoBehaviour
 	//
 
 	//Consumables
-	public void GainItem(int i){
-		consumables.Add (i);
+	public void GainItem(int i)
+	{
+		if(i == 1)
+		{
+			if(coins >= 5)
+			{
+				consumables.Add (i);
+				coins -= 5;
+			}
+		}
+		else if(i == 2)
+		{
+			if(coins >= 5)
+			{
+				consumables.Add (i);
+				coins -= 5;
+			}
+		}
+		else if(i == 3)
+		{
+			if(coins >= 15)
+			{
+				consumables.Add (i);
+				coins -= 15;
+			}
+		}
+		else if(i == 4)
+		{
+			if(coins >= 15)
+			{
+				consumables.Add (i);
+				coins -= 15;
+			}
+		}
 	}
 	public void ConsumeItem(int i){
 		consumables.Remove (i);
@@ -205,42 +237,124 @@ public class GameControl : MonoBehaviour
 	}
 
 	//Equipment
-	public void Acquire(int i){
-		equipment.Add (i);
-	}
-
-	public void Equip(int i){
-		equipment.Remove (i);
-		equiped.Add (i);
-		if (i == MHP5) {
-			max_health += 5;
-			health += 5;
-		} else if (i == MMP5) {
-			max_mana += 5;
-			mana += 5;
-		} else if (i == DMGP1) {
-			dmg++;
-		} else if (i == DEFP1) {
-			def++;
+	public void Acquire(int i)
+	{
+		if(i == 1)
+		{
+			if(coins >= 15)
+			{
+				equipment.Add (i);
+				coins -= 15;
+			}
+		}
+		else if(i == 2)
+		{
+			if(coins >= 15)
+			{
+				equipment.Add (i);
+				coins -= 15;
+			}
+		}
+		else if(i == 3)
+		{
+			if(coins >= 20)
+			{
+				equipment.Add (i);
+				coins -= 20;
+			}
+		}
+		else if(i == 4)
+		{
+			if(coins >= 35)
+			{
+				equipment.Add (i);
+				coins -= 35;
+			}
 		}
 	}
 
-	public void Unequip(int i){
-		equiped.Remove (i);
-		equipment.Add (i);
-		if (i == MHP5) {
+	public void Equip(int i)
+	{
+		if(i == 1)
+		{
+			if(bp >= 3)
+			{
+				equipment.Remove (i);
+				equiped.Add (i);
+				bp -= 3;
+				max_health += 5;
+				health += 5;
+			}
+		}
+		else if(i == 2)
+		{
+			if(bp >= 3)
+			{
+				equipment.Remove (i);
+				equiped.Add (i);
+				bp -= 3;
+				max_mana += 5;
+				mana += 5;
+			}
+		}
+		else if(i == 3)
+		{
+			if(bp >= 6)
+			{
+				equipment.Remove (i);
+				equiped.Add (i);
+				bp -= 6;
+				dmg++;
+			}
+		}
+		else if(i == 4)
+		{
+			if(bp >= 9)
+			{
+				equipment.Remove (i);
+				equiped.Add (i);
+				bp -= 9;
+				def++;
+			}
+		}
+	}
+
+	public void Unequip(int i)
+	{
+		if(i == 1)
+		{
+			equiped.Remove (i);
+			equipment.Add (i);
+			bp += 3;
 			max_health -= 5;
-			if(health > 5){
+			if(health > 5)
+			{
 				health -= 5;
 			}
-		} else if (i == MMP5) {
+		}
+		else if(i == 2)
+		{
+			equiped.Remove (i);
+			equipment.Add (i);
+			bp += 3;
 			max_mana -= 5;
-			if(mana > 5){
+			if(mana > 5)
+			{
 				mana -= 5;
 			}
-		} else if (i == DMGP1) {
+		}
+		else if(i == 3)
+		{
+			equiped.Remove (i);
+			equipment.Add (i);
+			bp += 6;
 			dmg--;
-		} else if (i == DEFP1) {
+		}
+		else if(i == 4)
+		{
+			equiped.Remove (i);
+			equipment.Add (i);
+			bp += 9;
 			def--;
 		}
 	}
@@ -248,11 +362,8 @@ public class GameControl : MonoBehaviour
 	//for testing consumables uncommment
 
 	void OnGUI(){
-
-		int bpCost_MHP5 = 3;
-		int bpCost_MMP5 = 3;
-		int bpCost_DMGP1 = 6;
-		int bpCost_DEFP1 = 9;
+	
+		/*
 		if (buying) {
 			if (GUI.Button (new Rect (Screen.width - 150, 10, 150, 50), "Not Buying")) {
 				buying = false;
@@ -314,6 +425,7 @@ public class GameControl : MonoBehaviour
 				}
 			}
 		}
+		*/
 	}
 
 }

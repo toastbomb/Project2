@@ -34,6 +34,7 @@ public class BattleControl : MonoBehaviour
 
 	void Start()
 	{
+		BattleMenu.instance.EnterBattle();
 		prevPlayerPos = PlayerManager.player.transform.position;
 		PlayerManager.player.transform.position = playerBattlePos;
 		//Build enemies
@@ -141,13 +142,14 @@ public class BattleControl : MonoBehaviour
 				}
 			}
 			else{
+				/*
 				if (GUI.Button(new Rect(10, 10, 150, 100), "End fight"))
 				{
 					EndOfFight();
 				}
 				if (GUI.Button(new Rect(10, Screen.height - 110, 150, 100), "Melee: \n" + (int)((double)GameControl.control.dmg)))
 				{
-					Melee();
+					OnMeleeButton();
 				}
 				int manaCostHS = 3;
 				if(GameControl.control.mana > manaCostHS){
@@ -171,6 +173,7 @@ public class BattleControl : MonoBehaviour
 				{
 					choosing = "CI";
 				}
+				*/
 				Vector3 pos = Camera.main.WorldToScreenPoint (PlayerManager.player.transform.position);
 				//GUI.Box (new Rect (pos.x - 40, pos.y - 20, 80, 20), "Health: " + GameControl.control.health + "/" + GameControl.control.max_health);
 				//Enemy hp
@@ -186,9 +189,40 @@ public class BattleControl : MonoBehaviour
 			}
 		}
 	}
+
+	public void OnMeleeButton()
+	{
+		Melee();
+	}
+
+	public void OnRangedButton()
+	{
+		choosing = "basic";
+	}
+
+	public void OnHeavyButton()
+	{
+		int manaCostHS = 3;
+		if(GameControl.control.mana > manaCostHS)
+		{
+			GameControl.control.mana -= manaCostHS;
+			HeavyStrike();
+		}
+	}
+
+	public void OnButtonDouble()
+	{
+		int manaCostDT = 3;
+		if(GameControl.control.mana > manaCostDT)
+		{
+			GameControl.control.mana -= manaCostDT;
+			choosing = "DT";
+		}
+	}
 	
 	void EndOfFight()
 	{
+		BattleMenu.instance.ExitBattle();
 		GameControl.control.xp += (enemyXp / GameControl.control.player_level);
 		GameControl.control.coins += coins;
 		if (GameControl.control.xp >= 100) {
@@ -296,11 +330,18 @@ public class BattleControl : MonoBehaviour
 
 	void ChangeToEnemyTurn()
 	{
+		BattleMenu.instance.ExitBattle();
 		i = 0;
 		Invoke("EnemyTurn", 2);
 	}
 	
 	void EnemyTurn(){ //Enemies attack
+		if(i == enemies.Count)
+		{
+			Invoke("ChangeToPlayerTurn", 2);
+			i++;
+		}
+
 		if( i >= enemies.Count )
 		{
 			return;
@@ -323,6 +364,11 @@ public class BattleControl : MonoBehaviour
 	{
 		i = i + 1;
 		Invoke("EnemyTurn", 2);
+	}
+
+	void ChangeToPlayerTurn()
+	{
+		BattleMenu.instance.EnterBattle();
 	}
 
 	void LevelUp(){ //Player levels up

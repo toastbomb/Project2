@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 	public float stopTime = 1f;
 
 	private Vector2 AIInput = Vector2.zero;
+	public GameObject alert;
 
 	void Awake()
 	{
@@ -59,6 +60,14 @@ public class Enemy : MonoBehaviour
 	{
 		AIInput = Vector2.zero;
 		Invoke("RandomInput", stopTime);
+	}
+
+	public void StopInvoke()
+	{	
+		CancelInvoke("StopDash");
+		CancelInvoke("StartPatrol");
+		enemyState = EnemyState.Fighting;
+		alert.SetActive(false);
 	}
 
 	void Update()
@@ -97,6 +106,7 @@ public class Enemy : MonoBehaviour
 				Vector3 dVec = PlayerManager.player.transform.position - this.transform.position;
 				dashVec = new Vector2(dVec.x, dVec.z);
 				enemyState = EnemyState.Dashing;
+				alert.SetActive(false);
 			}
 		}
 
@@ -137,6 +147,7 @@ public class Enemy : MonoBehaviour
 			{
 				Jump();
 				enemyState = EnemyState.Alerted;
+				alert.SetActive(true);
 			}
 		}
 	}

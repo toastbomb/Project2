@@ -52,6 +52,7 @@ public class PlayerManager : MonoBehaviour
 					OnEnterBattle();
 					Application.LoadLevelAdditive(sceneName);
 					enemy = (Enemy)other.GetComponent(typeof(Enemy));
+					enemy.StopInvoke();
 					//Destroy(other.gameObject);
 				}
 			}
