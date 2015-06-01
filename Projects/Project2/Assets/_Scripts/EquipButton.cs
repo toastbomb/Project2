@@ -6,5 +6,6 @@ public class EquipButton : MonoBehaviour {
 	public void Buy(int item)
 	{
 		GameControl.control.Acquire(item);
+
 	}
 }

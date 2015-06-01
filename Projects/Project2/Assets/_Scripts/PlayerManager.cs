@@ -33,11 +33,11 @@ public class PlayerManager : MonoBehaviour
 		if(playerState == PlayerState.Walking)
 		{
 			playerControllerMove.UpdateMoveController();
-		}
 
-		if(Input.GetKeyDown("i"))
-		{
-			PauseScreen.instance.OnStartPause();
+			if(Input.GetKeyDown("i"))
+			{
+				PauseScreen.instance.OnStartPause();
+			}
 		}
 	}
 	

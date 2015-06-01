@@ -21,8 +21,8 @@ public class GameControl : MonoBehaviour
 	public int max_bp = 3;
 	public int bp = 3;
 	public int player_level = 1;
-	public string current_scene = "test";
-	public string check_scene = "test";
+	public string current_scene = "Desert";
+	public string check_scene = "Desert";
 	bool checkpoint = false;
 	bool everHitCheckpoint = false;
 	public ArrayList consumables = new ArrayList();
@@ -161,7 +161,7 @@ public class GameControl : MonoBehaviour
 				temp_scene = current_scene;
 			}
 			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
-			SceneFadeInOut.sceneFadeInOut.EndScene(temp_scene);
+			//SceneFadeInOut.sceneFadeInOut.EndScene(temp_scene);
 			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
 			checkpoint = false;
 

@@ -3,19 +3,31 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour 
 {
-	private GameObject player;
+	public Vector3 targetObject;
 	public Vector3 offset;
-	public Vector3 fightPos;
+
+	public static CameraFollow instance;
+
+	void Awake () 
+	{
+		if(instance == null)
+		{
+			DontDestroyOnLoad (gameObject);
+			instance = this;
+		}
+		else if(instance != this)
+		{
+			Destroy(gameObject);
+		}
+	}
 
 	void Update () 
 	{
-		//Get a reference to the player
-		player = GameObject.FindWithTag ("Player");
 		//Calc the position that we want the camera to be at
-		Vector3 target = new Vector3 (player.transform.position.x + offset.x, player.transform.position.y + offset.y, player.transform.position.z + offset.z);
+		Vector3 target = new Vector3 (PlayerManager.player.transform.position.x + offset.x, PlayerManager.player.transform.position.y + offset.y, PlayerManager.player.transform.position.z + offset.z);
 		//Make the camera postion equal the target position
 		transform.position = target;
 		//Always rotate to look at the player
-		transform.LookAt (player.transform);
+		transform.LookAt (PlayerManager.player.transform);
 	}
 }

@@ -31,7 +31,7 @@ public class BattleControl : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+
 	void Start()
 	{
 		prevPlayerPos = PlayerManager.player.transform.position;

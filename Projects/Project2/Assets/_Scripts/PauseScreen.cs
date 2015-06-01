@@ -9,6 +9,7 @@ public class PauseScreen : MonoBehaviour
 	public static PauseScreen instance;
 
 	public Transform contentPanelConsume;
+	public Transform contentPanelConsume2;
 	public GameObject HP5;
 	public GameObject Mana5;
 	public GameObject HPFull;
@@ -51,6 +52,10 @@ public class PauseScreen : MonoBehaviour
 		{
 			GameObject.Destroy(child.gameObject);
 		}
+		foreach(Transform child in contentPanelConsume2)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
 		foreach(Transform child in contentPanelEquipment)
 		{
 			GameObject.Destroy(child.gameObject);
@@ -64,6 +69,10 @@ public class PauseScreen : MonoBehaviour
 	public void Refresh()
 	{
 		foreach(Transform child in contentPanelConsume)
+		{
+			GameObject.Destroy(child.gameObject);
+		}
+		foreach(Transform child in contentPanelConsume2)
 		{
 			GameObject.Destroy(child.gameObject);
 		}
@@ -99,22 +108,30 @@ public class PauseScreen : MonoBehaviour
 			if(GameControl.control.consumables[i].Equals(1))
 			{
 				GameObject newButton = Instantiate (HP5) as GameObject;
+				GameObject newButton2 = Instantiate (HP5) as GameObject;
 				newButton.transform.SetParent(contentPanelConsume);
+				newButton2.transform.SetParent(contentPanelConsume2);
 			}
 			if(GameControl.control.consumables[i].Equals(2))
 			{
 				GameObject newButton = Instantiate (Mana5) as GameObject;
+				GameObject newButton2 = Instantiate (Mana5) as GameObject;
 				newButton.transform.SetParent(contentPanelConsume);
+				newButton2.transform.SetParent(contentPanelConsume2);
 			}
 			if(GameControl.control.consumables[i].Equals(3))
 			{
 				GameObject newButton = Instantiate (HPFull) as GameObject;
+				GameObject newButton2 = Instantiate (HPFull) as GameObject;
 				newButton.transform.SetParent(contentPanelConsume);
+				newButton2.transform.SetParent(contentPanelConsume2);
 			}
 			if(GameControl.control.consumables[i].Equals(4))
 			{
 				GameObject newButton = Instantiate (ManaFull) as GameObject;
+				GameObject newButton2 = Instantiate (ManaFull) as GameObject;
 				newButton.transform.SetParent(contentPanelConsume);
+				newButton2.transform.SetParent(contentPanelConsume2);
 			}
 		}
 	}
