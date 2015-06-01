@@ -48,6 +48,7 @@ public class NPC : MonoBehaviour
 		if(other.tag == "Player")
 		{
 			inRangeOfPlayer = true;
+			InteractNotification.instance.ActivateMe();
 		}
 	}
 
@@ -56,6 +57,7 @@ public class NPC : MonoBehaviour
 		if(other.tag == "Player")
 		{
 			inRangeOfPlayer = false;
+			InteractNotification.instance.DeactivateMe();
 		}
 	}
 }
