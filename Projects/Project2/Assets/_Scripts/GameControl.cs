@@ -212,7 +212,7 @@ public class GameControl : MonoBehaviour
 				temp_scene = current_scene;
 			}
 			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
-			//SceneFadeInOut.sceneFadeInOut.EndScene(temp_scene);
+			SceneFadeInOut.sceneFadeInOut.EndScene(temp_scene);
 			GameObject.FindGameObjectWithTag ("Player").transform.position = tempPos;
 			checkpoint = false;
 
@@ -227,7 +227,7 @@ public class GameControl : MonoBehaviour
 	public void Death(){ //On player death
 		Save ();
 		checkpoint = true;
-		Invoke("Load", 1);
+		Load ();
 	}
 	//ITEMS
 	//

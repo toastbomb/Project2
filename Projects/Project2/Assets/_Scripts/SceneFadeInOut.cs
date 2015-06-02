@@ -59,13 +59,12 @@ public class SceneFadeInOut : MonoBehaviour
 	{
 		fader.enabled = true;
 		FadeToBlack();
-		print ("bla");
 
-		if(fader.color.a >= 0.98f)
-		{
+		//if(fader.color.a >= 0.98f)
+		//{
 			level = sceneName;
 			Invoke("LoadTheLevel", 1);
-		}
+		//}
 	}
 
 	void LoadTheLevel()
