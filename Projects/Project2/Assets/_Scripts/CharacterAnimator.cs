@@ -61,6 +61,7 @@ public class CharacterAnimator : MonoBehaviour
 		{
 			anim.SetBool(slashHash, PlayerManager.player.slashing);
 			anim.SetBool(throwHash, PlayerManager.player.throwing);
+			transform.rotation = Quaternion.Euler(0,90,0);
 
 			if(!inbattle)
 			{
