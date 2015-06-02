@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\BattleControl.cs" />
      <Compile Include="Assets\_Scripts\BattleMenu.cs" />
+     <Compile Include="Assets\_Scripts\ButtonConsume.cs" />
      <Compile Include="Assets\_Scripts\CameraFollow.cs" />
      <Compile Include="Assets\_Scripts\ConsumeButton.cs" />
      <Compile Include="Assets\_Scripts\Enemy.cs" />

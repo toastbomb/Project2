@@ -10,8 +10,8 @@ public class ConsumeButton : MonoBehaviour
 
 		if(GameControl.control.isInBattle)
 		{
-			this.gameObject.SetActive(false);
 			BattleControl.battleControl.ChangeToEnemyTurn();
+			UseConsume.instance.TurnOffMenu();
 		}
 	}
 }
