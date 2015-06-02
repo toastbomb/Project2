@@ -210,6 +210,7 @@ public class BattleControl : MonoBehaviour
 		int manaCostHS = 3;
 		if(GameControl.control.mana >= manaCostHS)
 		{
+			PlayerManager.player.slashing = true;
 			GameControl.control.mana -= manaCostHS;
 			Invoke("HeavyStrike", 0.3f);
 		}

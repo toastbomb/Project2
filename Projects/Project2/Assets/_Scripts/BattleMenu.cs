@@ -51,7 +51,6 @@ public class BattleMenu : MonoBehaviour
 
 	public void Heavy()
 	{
-		PlayerManager.player.slashing = true;
 		BattleControl.battleControl.OnHeavyButton();
 	}
 }
