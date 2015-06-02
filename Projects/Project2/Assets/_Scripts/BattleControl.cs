@@ -390,6 +390,7 @@ public class BattleControl : MonoBehaviour
 	}
 
 	void Leave(){ //Exiting the battle
+		BattleMenu.instance.ExitBattle();
 		GameControl.control.isInBattle = false;
 		PlayerManager.player.transform.position = prevPlayerPos;
 		PlayerManager.player.OnExitBattle ();
