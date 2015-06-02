@@ -208,7 +208,7 @@ public class BattleControl : MonoBehaviour
 	public void OnHeavyButton()
 	{
 		int manaCostHS = 3;
-		if(GameControl.control.mana > manaCostHS)
+		if(GameControl.control.mana >= manaCostHS)
 		{
 			GameControl.control.mana -= manaCostHS;
 			Invoke("HeavyStrike", 0.3f);
@@ -218,7 +218,7 @@ public class BattleControl : MonoBehaviour
 	public void OnButtonDouble()
 	{
 		int manaCostDT = 3;
-		if(GameControl.control.mana > manaCostDT)
+		if(GameControl.control.mana >= manaCostDT)
 		{
 			GameControl.control.mana -= manaCostDT;
 			choosing = "DT";
