@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
 
 	//temp
 	public Enemy enemy;
+	public bool slashing = false;
+	public bool throwing = false;
 
 	void Awake () 
 	{

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControllerMove : MonoBehaviour 
 {
+	public static PlayerControllerMove instance;
+
 	public float gravity = 21f;
 	public float terminalVelocity = 20f;
 	public float jumpSpeed = 6f;
@@ -20,13 +22,26 @@ public class PlayerControllerMove : MonoBehaviour
 	{
 		//get the character controler on this object
 		characterController = gameObject.GetComponent<CharacterController> ();
+
+		if(instance == null)
+		{
+			DontDestroyOnLoad (gameObject);
+			instance = this;
+		}
+		else if(instance != this)
+		{
+			Destroy(gameObject);
+		}
 	}
 	
 	public void UpdateMoveController () 
 	{
-		CheckMovement ();
-		CheckInput ();
-		UpdateMovement ();
+		if(Application.loadedLevelName != "MainMenu")
+		{
+			CheckMovement ();
+			CheckInput ();
+			UpdateMovement ();
+		}
 	}
 	
 	void CheckMovement()

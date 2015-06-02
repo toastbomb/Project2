@@ -16,6 +16,7 @@ public class BattleControl : MonoBehaviour
 	public Enemy enemy;
 	public int enemyNum;
 	double HSmult = 1.5;
+	int doubletapI = 0;
 
 	private int i = 0;
 
@@ -68,7 +69,8 @@ public class BattleControl : MonoBehaviour
 			for (int i=0; i < enemyNum; i++) {
 				if (GUI.Button (new Rect (((Vector3)tempList [i]).x - 40, ((Vector3)tempList [i]).y - 40, 80, 20), "Enemy " + i)) {
 					enemy = (Enemy)enemies [i];
-					Ranged ();
+					PlayerManager.player.throwing = true;
+					Invoke("Ranged", 0.5f);
 					choosing = "";
 				}
 			}
@@ -83,7 +85,9 @@ public class BattleControl : MonoBehaviour
 			for (int i=0; i < enemyNum; i++) {
 				if (GUI.Button (new Rect (((Vector3)tempList [i]).x - 40, ((Vector3)tempList [i]).y - 40, 80, 20), "Enemy " + i)) {
 					enemy = (Enemy)enemies [i];
-					DoubleTap (i);
+					doubletapI = i;
+					PlayerManager.player.throwing = true;
+					Invoke("DoDoubleTap", 0.5f);
 					choosing = "";
 				}
 			}
@@ -193,7 +197,7 @@ public class BattleControl : MonoBehaviour
 
 	public void OnMeleeButton()
 	{
-		Melee();
+		Invoke("Melee", 0.3f);
 	}
 
 	public void OnRangedButton()
@@ -207,7 +211,7 @@ public class BattleControl : MonoBehaviour
 		if(GameControl.control.mana > manaCostHS)
 		{
 			GameControl.control.mana -= manaCostHS;
-			HeavyStrike();
+			Invoke("HeavyStrike", 0.3f);
 		}
 	}
 
@@ -244,13 +248,18 @@ public class BattleControl : MonoBehaviour
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
 			if(enemies.Count == 0){
-				EndOfFight ();
+				Invoke("EndOfFight", 1f);
 			}
 			else{
 				enemy = (Enemy)enemies[0];
 			}
 		}
 		ChangeToEnemyTurn();
+	}
+
+	void DoDoubleTap()
+	{
+		DoubleTap(doubletapI);
 	}
 
 	void DoubleTap(int i){ //Ranged skill
@@ -278,7 +287,7 @@ public class BattleControl : MonoBehaviour
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
 			if(enemies.Count == 0){
-				EndOfFight ();
+				Invoke("EndOfFight", 1f);
 			}
 			else{
 				enemy = (Enemy)enemies[0];
@@ -299,7 +308,7 @@ public class BattleControl : MonoBehaviour
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
 			if(enemies.Count == 0){
-				EndOfFight ();
+				Invoke("EndOfFight", 1f);
 			}
 			else{
 				enemy = (Enemy)enemies[0];
@@ -320,7 +329,7 @@ public class BattleControl : MonoBehaviour
 			enemies.Remove(enemy);
 			Destroy (enemy.gameObject);
 			if(enemies.Count == 0){
-				EndOfFight ();
+				Invoke("EndOfFight", 1f);
 			}
 			else{
 				enemy = (Enemy)enemies[0];
@@ -333,13 +342,15 @@ public class BattleControl : MonoBehaviour
 	{
 		BattleMenu.instance.ExitBattle();
 		i = 0;
-		Invoke("EnemyTurn", 2);
+		Invoke("EnemyTurn", 1);
 	}
 	
 	void EnemyTurn(){ //Enemies attack
+		PlayerManager.player.throwing = false;
+		PlayerManager.player.slashing = false;
 		if(i == enemies.Count)
 		{
-			Invoke("ChangeToPlayerTurn", 2);
+			Invoke("ChangeToPlayerTurn", 1);
 			i++;
 		}
 
@@ -364,7 +375,7 @@ public class BattleControl : MonoBehaviour
 	void AdvanceEnemyTurn()
 	{
 		i = i + 1;
-		Invoke("EnemyTurn", 2);
+		Invoke("EnemyTurn", 1);
 	}
 
 	void ChangeToPlayerTurn()

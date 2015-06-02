@@ -1,6 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ButtonConsume.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\ButtonConsume.cs">
     <Files>
       <File FileName="Assets\_Scripts\ConsumeButton.cs" Line="14" Column="38" />
       <File FileName="Assets\_Scripts\BattleControl.cs" Line="1" Column="1" />
@@ -13,8 +13,8 @@
       <File FileName="Assets\_Scripts\Enemy.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\UpdateUIValue.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\NPC.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\UseConsume.cs" Line="32" Column="26" />
-      <File FileName="Assets\ButtonConsume.cs" Line="16" Column="1" />
+      <File FileName="Assets\_Scripts\UseConsume.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\ButtonConsume.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
