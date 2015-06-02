@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 93729b7dce3c40945bb90b67f813896a
-timeCreated: 1433181147
+guid: 34881a3966b38fd43909efb43e37d632
+timeCreated: 1433280667
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -21,13 +21,6 @@ ModelImporter:
     100026: Sphere_004
     100028: Sphere_005
     100030: Sphere_006
-    100032: Sphere_007
-    100034: Sphere_008
-    100036: Sphere_009
-    100038: Sphere_010
-    100040: Sphere_011
-    100042: Sphere_012
-    100044: Sphere_013
     400000: Armature
     400002: Bone
     400004: Bone_001
@@ -44,41 +37,19 @@ ModelImporter:
     400026: Sphere_004
     400028: Sphere_005
     400030: Sphere_006
-    400032: Sphere_007
-    400034: Sphere_008
-    400036: Sphere_009
-    400038: Sphere_010
-    400040: Sphere_011
-    400042: Sphere_012
-    400044: Sphere_013
     4300000: Sphere_002
-    4300002: Sphere_013
-    4300004: Sphere_012
-    4300006: Sphere_011
-    4300008: Sphere_010
-    4300010: Sphere_009
-    4300012: Sphere_008
-    4300014: Sphere_007
-    4300016: Sphere_006
-    4300018: Sphere_005
-    4300020: Sphere_004
-    4300022: Sphere_003
-    4300024: Sphere_001
-    4300026: Sphere_000
+    4300002: Sphere_006
+    4300004: Sphere_005
+    4300006: Sphere_004
+    4300008: Sphere_003
+    4300010: Sphere_001
+    4300012: Sphere_000
     7400000: Default Take
-    7400002: Run
-    7400004: Running
-    7400006: Jumping
-    7400008: JumpingInit
-    7400010: JumpingAdjust
-    7400012: FallingLoop
-    7400014: Idle
-    7400016: Jump
-    7400018: Falling
-    7400020: RunningL
-    7400022: Slash
-    7400024: Throw
-    7400026: BattleIdel
+    7400002: Idel
+    7400004: Jumping
+    7400006: Run
+    7400008: Running
+    7400010: test
     9500000: //RootNode
     13700000: Sphere_002
     13700002: Sphere_000
@@ -87,13 +58,6 @@ ModelImporter:
     13700008: Sphere_004
     13700010: Sphere_005
     13700012: Sphere_006
-    13700014: Sphere_007
-    13700016: Sphere_008
-    13700018: Sphere_009
-    13700020: Sphere_010
-    13700022: Sphere_011
-    13700024: Sphere_012
-    13700026: Sphere_013
   materials:
     importMaterials: 0
     materialName: 0
@@ -157,56 +121,10 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Idle
-      takeName: Default Take
-      firstFrame: 0
-      lastFrame: 8
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Bone
-        weight: 1
-      - path: Armature/Bone/Bone_001
-        weight: 1
-      - path: Armature/Bone/Bone_002
-        weight: 1
-      - path: Armature/Bone/Bone_003
-        weight: 1
-      - path: Armature/Bone/Bone_005
-        weight: 1
-      - path: Armature/Bone/Bone_006
-        weight: 1
-      - path: Armature/Bone_004
-        weight: 1
-      - path: Sphere_002
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Jump
-      takeName: Default Take
-      firstFrame: 15
-      lastFrame: 25
+      name: Idel
+      takeName: Idel
+      firstFrame: -1
+      lastFrame: 88
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -249,10 +167,56 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Falling
-      takeName: Default Take
-      firstFrame: 50
-      lastFrame: 60
+      name: Jumping
+      takeName: Jumping
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_001
+        weight: 1
+      - path: Armature/Bone/Bone_002
+        weight: 1
+      - path: Armature/Bone/Bone_003
+        weight: 1
+      - path: Armature/Bone/Bone_005
+        weight: 1
+      - path: Armature/Bone/Bone_006
+        weight: 1
+      - path: Armature/Bone_004
+        weight: 1
+      - path: Sphere_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: -1
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -296,55 +260,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
     - serializedVersion: 16
       name: Running
-      takeName: Default Take
-      firstFrame: 33
-      lastFrame: 51
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Bone
-        weight: 1
-      - path: Armature/Bone/Bone_001
-        weight: 1
-      - path: Armature/Bone/Bone_002
-        weight: 1
-      - path: Armature/Bone/Bone_003
-        weight: 1
-      - path: Armature/Bone/Bone_005
-        weight: 1
-      - path: Armature/Bone/Bone_006
-        weight: 1
-      - path: Armature/Bone_004
-        weight: 1
-      - path: Sphere_002
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: RunningL
-      takeName: Default Take
-      firstFrame: 60
-      lastFrame: 79
+      takeName: Running
+      firstFrame: -1
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -387,10 +305,10 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Slash
-      takeName: Default Take
-      firstFrame: 55
-      lastFrame: 67
+      name: test
+      takeName: test
+      firstFrame: -1
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -398,98 +316,6 @@ ModelImporter:
       loop: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Bone
-        weight: 1
-      - path: Armature/Bone/Bone_001
-        weight: 1
-      - path: Armature/Bone/Bone_002
-        weight: 1
-      - path: Armature/Bone/Bone_003
-        weight: 1
-      - path: Armature/Bone/Bone_005
-        weight: 1
-      - path: Armature/Bone/Bone_006
-        weight: 1
-      - path: Armature/Bone_004
-        weight: 1
-      - path: Sphere_002
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Throw
-      takeName: Default Take
-      firstFrame: 67
-      lastFrame: 87
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Bone
-        weight: 1
-      - path: Armature/Bone/Bone_001
-        weight: 1
-      - path: Armature/Bone/Bone_002
-        weight: 1
-      - path: Armature/Bone/Bone_003
-        weight: 1
-      - path: Armature/Bone/Bone_005
-        weight: 1
-      - path: Armature/Bone/Bone_006
-        weight: 1
-      - path: Armature/Bone_004
-        weight: 1
-      - path: Sphere_002
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: BattleIdel
-      takeName: Default Take
-      firstFrame: 88
-      lastFrame: 95
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -547,7 +373,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 1
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
