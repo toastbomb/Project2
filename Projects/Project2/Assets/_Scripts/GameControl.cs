@@ -227,7 +227,7 @@ public class GameControl : MonoBehaviour
 	public void Death(){ //On player death
 		Save ();
 		checkpoint = true;
-		Load ();
+		Invoke("Load", 1);
 	}
 	//ITEMS
 	//
