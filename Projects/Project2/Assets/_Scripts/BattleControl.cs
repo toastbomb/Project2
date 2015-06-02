@@ -34,6 +34,7 @@ public class BattleControl : MonoBehaviour
 
 	void Start()
 	{
+		GameControl.control.isInBattle = true;
 		BattleMenu.instance.EnterBattle();
 		prevPlayerPos = PlayerManager.player.transform.position;
 		PlayerManager.player.transform.position = playerBattlePos;
@@ -328,7 +329,7 @@ public class BattleControl : MonoBehaviour
 		ChangeToEnemyTurn();
 	}
 
-	void ChangeToEnemyTurn()
+	public void ChangeToEnemyTurn()
 	{
 		BattleMenu.instance.ExitBattle();
 		i = 0;
@@ -378,6 +379,7 @@ public class BattleControl : MonoBehaviour
 	}
 
 	void Leave(){ //Exiting the battle
+		GameControl.control.isInBattle = false;
 		PlayerManager.player.transform.position = prevPlayerPos;
 		PlayerManager.player.OnExitBattle ();
 		Destroy (this.transform.parent.gameObject);

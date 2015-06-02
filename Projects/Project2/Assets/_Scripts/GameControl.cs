@@ -46,6 +46,7 @@ public class GameControl : MonoBehaviour
 
 	//Item testing var
 	bool buying = false;
+	public bool isInBattle = false;
 
 	//Todo
 	//Items, Badges, Equipped badges
