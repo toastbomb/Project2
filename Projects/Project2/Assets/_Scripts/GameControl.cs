@@ -225,9 +225,10 @@ public class GameControl : MonoBehaviour
 		Save ();
 	}
 	public void Death(){ //On player death
-		Save ();
-		checkpoint = true;
+		//Save ();
+		//checkpoint = true;
 		Load ();
+		Application.LoadLevel(GameControl.control.current_scene);
 	}
 	//ITEMS
 	//
