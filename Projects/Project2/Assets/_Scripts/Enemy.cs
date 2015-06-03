@@ -215,7 +215,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 	
-	void Jump()
+	public void Jump()
 	{
 		if(characterController.isGrounded)
 		{

@@ -359,6 +359,7 @@ public class BattleControl : MonoBehaviour
 		{
 			return;
 		}
+		enemy = (Enemy)enemies[i];
 		int enemyDmg = ((Enemy)enemies[i]).dmg;
 		int dmg_dealt = (enemyDmg - GameControl.control.def);
 		if(dmg_dealt > 0){
